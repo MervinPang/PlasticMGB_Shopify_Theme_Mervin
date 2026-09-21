@@ -1,0 +1,157 @@
+<section class="rt-component-section-2">
+  <div class="w-layout-blockcontainer rt-component-container-3 w-container">
+    <div class="w-layout-grid rt-home-two-counter-grid">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'stat_with_number' %}
+              <div class="rt-border-bottom rt-counter-history-block" {{ block.shopify_attributes }}>
+                <div class="rt-category-cards-text-2">{{ block.settings.label }}</div>
+                <div class="w-layout-hflex rt-counter-section">
+                  <div data-w-id="08f8407f-e831-fb2b-5da9-7e10204eca47" class="w-layout-hflex rt-counter-box-3">
+                    <div class="w-layout-vflex rt-counter-3">
+                      <div class="rt-counter-number rt-home-two-counter">{{ block.settings.number }}</div>
+                    </div>
+                  </div>
+                  <div class="rt-counter-number rt-home-two-counter rt-text-blue">{{ block.settings.suffix }}</div>
+                </div>
+              </div>
+            {% when 'stat_text_only' %}
+              <div class="w-layout-vflex rt-home-two-counter-block rt-bottom-counter-border" {{ block.shopify_attributes }}>
+                <div class="rt-category-cards-text-2">{{ block.settings.label }}</div>
+              </div>
+          {% endcase %}
+
+          {% comment %} Insert spacers after the 2nd block to force 4-column staggered grid (Row 1: 2 stats + 2 spacers; Row 2: 1 spacer + 3 stats) {% endcomment %}
+          {% if forloop.index == 2 %}
+            <div class="rt-border-bottom rt-counter-history-block rt-blank-counter-section"></div>
+            <div class="rt-border-bottom rt-counter-history-block rt-blank-counter-section"></div>
+            <div class="w-layout-vflex rt-home-two-counter-block rt-bottom-counter-border rt-no-border"></div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <div class="rt-border-bottom rt-counter-history-block">
+          <div class="rt-category-cards-text-2">steel axles produced annually</div>
+          <div class="w-layout-hflex rt-counter-section">
+            <div data-w-id="08f8407f-e831-fb2b-5da9-7e10204eca47" class="w-layout-hflex rt-counter-box-3">
+              <div class="w-layout-vflex rt-counter-3">
+                <div class="rt-counter-number rt-home-two-counter">8</div>
+              </div>
+            </div>
+            <div class="rt-counter-number rt-home-two-counter rt-text-blue">M+</div>
+          </div>
+        </div>
+        <div class="rt-border-bottom rt-counter-history-block">
+          <div class="rt-category-cards-text-2">castor wheels produced annually</div>
+          <div class="w-layout-hflex rt-counter-section">
+            <div data-w-id="08f8407f-e831-fb2b-5da9-7e10204eca47" class="w-layout-hflex rt-counter-box-3">
+              <div class="w-layout-vflex rt-counter-3">
+                <div class="rt-counter-number rt-home-two-counter">5</div>
+              </div>
+            </div>
+            <div class="rt-counter-number rt-home-two-counter rt-text-blue">M+</div>
+          </div>
+        </div>
+        <div class="rt-border-bottom rt-counter-history-block rt-blank-counter-section"></div>
+        <div class="rt-border-bottom rt-counter-history-block rt-blank-counter-section"></div>
+        <div class="w-layout-vflex rt-home-two-counter-block rt-bottom-counter-border rt-no-border"></div>
+        <div class="w-layout-vflex rt-home-two-counter-block rt-bottom-counter-border">
+          <div class="rt-category-cards-text-2">High quality, on-time delivery, competitive pricing</div>
+        </div>
+        <div class="w-layout-vflex rt-home-two-counter-block rt-bottom-counter-border">
+          <div class="rt-category-cards-text-2">Full range from one supplier — castors, axles, locks, hardware</div>
+        </div>
+        <div class="w-layout-vflex rt-home-two-counter-block rt-bottom-counter-border">
+          <div class="rt-category-cards-text-2">Established 2011 — 15+ years in the industry</div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Counter Stats",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "stat_with_number",
+      "name": "Stat with Number",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "steel axles produced annually"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "8"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix",
+          "default": "M+"
+        }
+      ]
+    },
+    {
+      "type": "stat_text_only",
+      "name": "Stat Text Only",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "High quality, on-time delivery, competitive pricing"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Counter Stats",
+      "blocks": [
+        {
+          "type": "stat_with_number",
+          "settings": {
+            "label": "steel axles produced annually",
+            "number": "8",
+            "suffix": "M+"
+          }
+        },
+        {
+          "type": "stat_with_number",
+          "settings": {
+            "label": "castor wheels produced annually",
+            "number": "5",
+            "suffix": "M+"
+          }
+        },
+        {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "High quality, on-time delivery, competitive pricing"
+          }
+        },
+        {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "Full range from one supplier — castors, axles, locks, hardware"
+          }
+        },
+        {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "Established 2011 — 15+ years in the industry"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

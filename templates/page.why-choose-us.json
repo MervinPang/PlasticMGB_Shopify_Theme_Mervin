@@ -1,0 +1,183 @@
+/*
+ * ------------------------------------------------------------
+ * DEPRECATED — This template has been merged into
+ * page.about-us.json as of 20 Sep 2026.
+ *
+ * All sections from this page (why-hero, counter-stats,
+ * credentials, procurement) are now included in the
+ * combined About Us template. This file is kept as a
+ * reference backup. Do not assign new pages to this template.
+ *
+ * Pre-merge backup: page.why-choose-us-pre-merge.json
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "why-hero": {
+      "type": "why-hero",
+      "settings": {
+        "eyebrow": "WHY CHOOSE US",
+        "heading": "Plastic MGB Made To Perform",
+        "description": "Accessories for Mobile Waste Containers are at the core of our business. Designed for quality, durability, and resilience, our products are built to perform throughout their service life. With a strong focus on safety and reliable performance, our accessories help support the efficient operation of your bin fleet, delivering long-lasting solutions that stand up to everyday use."
+      }
+    },
+    "counter-stats": {
+      "type": "counter-stats",
+      "blocks": {
+        "stat_1": {
+          "type": "stat_with_number",
+          "settings": {
+            "label": "steel axles produced annually",
+            "number": "8",
+            "suffix": "M+"
+          }
+        },
+        "stat_2": {
+          "type": "stat_with_number",
+          "settings": {
+            "label": "castor wheels produced annually",
+            "number": "5",
+            "suffix": "M+"
+          }
+        },
+        "stat_3": {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "High quality, on-time delivery, competitive pricing"
+          }
+        },
+        "stat_4": {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "Full range from one supplier — castors, axles, locks, hardware"
+          }
+        },
+        "stat_5": {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "Established 2011 — 15+ years in the industry"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4",
+        "stat_5"
+      ],
+      "settings": {}
+    },
+    "credentials": {
+      "type": "credentials",
+      "blocks": {
+        "primary": {
+          "type": "primary_card",
+          "settings": {
+            "eyebrow": "PRIMARY CERTIFICATION",
+            "title": "EN840/RAL 951 / SKZ certified",
+            "description": "EN840/RAL 951 is the European standard that regulates the design, performance, and testing of mobile waste receptacles. For OEM manufacturers supplying to the European market, EN840/RAL 951 compliance for castor wheels and axles is a mandatory procurement requirement — not optional. Our EN840/RAL 951 certification is granted and independently verified by the SKZ Institute, a leading plastics testing and certification organization in Europe"
+          }
+        },
+        "cred_1": {
+          "type": "credential_card",
+          "settings": {
+            "title": "REACH (EC) – 155 SVHC",
+            "description": "Declaration of conformity covering 155 substances of very high concern. All applicable materials meet REACH requirements for safe handling and use.",
+            "icon": "leaf"
+          }
+        },
+        "cred_2": {
+          "type": "credential_card",
+          "settings": {
+            "title": "RoHS",
+            "description": "Restriction of hazardous substances — Cadmium, Lead, Mercury and Hexavalent Chromium compliant across all applicable product lines.",
+            "icon": "checkmark"
+          }
+        },
+        "cred_3": {
+          "type": "credential_card",
+          "settings": {
+            "title": "Neutral Salt Spray Test",
+            "description": "Corrosion resistance testing on zinc-plated fork components and steel hardware. Confirms coating durability under sustained salt spray exposure.",
+            "icon": "droplet"
+          }
+        }
+      },
+      "block_order": [
+        "primary",
+        "cred_1",
+        "cred_2",
+        "cred_3"
+      ],
+      "settings": {}
+    },
+   "procurement": {
+      "type": "procurement",
+      "blocks": {
+        "proc_1": {
+          "type": "procurement_card",
+          "settings": {
+            "icon": "shield",
+            "title": "EN840/RAL 951 compliant",
+            "subtext": "Independently verified by SKZ Institute, the European standard for mobile waste container components.",
+            "bullet_1": "Covers castor wheels",
+            "bullet_2": "Independently verified by SKZ Institute"
+          }
+        },
+        "proc_2": {
+          "type": "procurement_card",
+          "settings": {
+            "icon": "chart",
+            "title": "High-volume capacity",
+            "subtext": "Dedicated production lines for MGB accessories — consistent output, predictable lead times.",
+            "bullet_1": "6M+ castor wheels / year",
+            "bullet_2": "5M+ steel axles / year"
+          }
+        },
+        "proc_3": {
+          "type": "procurement_card",
+          "settings": {
+            "icon": "pricing",
+            "title": "Competitive pricing",
+            "subtext": "Direct manufacturer pricing with no intermediaries — better rates for long-term OEM relationships.",
+            "bullet_1": "Direct factory pricing",
+            "bullet_2": "Global shipping"
+          }
+        },
+        "proc_4": {
+          "type": "procurement_card",
+          "settings": {
+            "icon": "cube",
+            "title": "OEM customisation",
+            "subtext": "Custom dimensions and Patented design innovation across our product range.",
+            "bullet_1": "Custom axle lengths available",
+            "bullet_2": "Engineered for OEM applications"
+          }
+        }
+      },
+      "block_order": [
+        "proc_1",
+        "proc_2",
+        "proc_3",
+        "proc_4"
+      ],
+      "settings": {
+        "eyebrow": "OUR CREDENTIALS",
+        "heading": "Why Procurement Teams Choose Us"
+      }
+    },
+    "scroll": {
+      "type": "product-scroll",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta",
+      "settings": {
+        "heading": "Have A Project In Mind? Let's Connect",
+        "button_text": "Contact Us Today"
+      }
+    }
+  },
+  "order": ["why-hero", "counter-stats", "credentials", "procurement", "scroll", "cta"]
+}

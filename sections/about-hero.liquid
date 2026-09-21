@@ -1,0 +1,106 @@
+{%- if section.settings.background_image != blank -%}
+  {%- assign bg_image_url = section.settings.background_image | image_url: width: 2000 -%}
+{%- else -%}
+  {%- assign bg_image_url = 'Wheels_on_blueprint_CAD_files_202605281042-transformed.jpeg' | asset_url -%}
+{%- endif -%}
+
+<section class="section-12" style="background-image: url('{{ bg_image_url }}');">
+  <div class="hero-wrapper">
+    <div class="hero-background">
+      <div class="hero-card">
+        {%- assign eyebrow = section.settings.eyebrow -%}
+        {%- if eyebrow == blank or eyebrow == 'ABOUT US' -%}
+          {%- assign eyebrow = 'sections.about_hero.eyebrow' | t -%}
+        {%- endif -%}
+        {%- assign heading = section.settings.heading -%}
+        {%- if heading == blank or heading == 'Over 15+ years supplying the global MGB industry' -%}
+          {%- assign heading = 'sections.about_hero.heading' | t -%}
+        {%- endif -%}
+        {%- assign description = section.settings.description -%}
+        {%- assign default_desc = 'Plastic MGB Ltd was established in 2011 and based in Guangdong, China. The parent company of Plastic MGB is a major wheel & Castor manufacturer that caters to diverse industries and application. Over the years, we have won over many customers from the waste container industry with our high quality products, on time delivery and competitive pricing. As an extension of our one stop service, we have expanded our product range to include key accessories such as axle, Castor, lock, screw/nut and other customized products.' -%}
+        {%- if description == blank or description == default_desc -%}
+          {%- assign description = 'sections.about_hero.description' | t -%}
+        {%- endif -%}
+
+        <div class="eyebrow">
+          <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="svg-2">
+            <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" fill="currentColor" class="path"></path>
+          </svg>
+          <h1 class="heading-6">{{ eyebrow }}</h1>
+        </div>
+        <div class="div-block-16">
+          <h1 class="heading-7"><strong class="bold-text-2">{{ heading }}</strong></h1>
+          <div class="text-block-8-copy">{{ description }}</div>
+        </div>
+      </div>
+      <div class="hero-contact-us">
+        <div>
+          <h1 class="heading-10">{{ 'contact.form.heading' | t }}</h1>
+        </div>
+        <div class="form-wrapper-block">
+          {% form 'contact' %}
+            <div class="form">
+              <label for="Company-Name" class="field-label-2">{{ 'contact.form.company_name' | t }}</label>
+              <input class="w-input" maxlength="256" name="contact[company_name]" placeholder="{{ 'contact.form.placeholder_company' | t }}" type="text" id="Company-Name" required="">
+              <label for="name" class="field-label-2">{{ 'contact.form.name' | t }}</label>
+              <input class="w-input" maxlength="256" name="contact[name]" placeholder="{{ 'contact.form.placeholder_name' | t }}" type="text" id="name" required="">
+              <label for="email" class="field-label">{{ 'contact.form.email' | t }}</label>
+              <input class="w-input" maxlength="256" name="contact[email]" placeholder="{{ 'contact.form.placeholder_email' | t }}" type="email" id="email" required="">
+              <label for="Text" class="field-label">{{ 'contact.form.telephone' | t }}</label>
+              <input class="w-input" maxlength="256" name="contact[phone]" placeholder="{{ 'contact.form.placeholder_telephone' | t }}" type="tel" id="Text" required="">
+              <label for="Message" class="field-label-2">{{ 'contact.form.message' | t }}</label>
+              <textarea required="" placeholder="{{ 'contact.form.placeholder_message' | t }}" maxlength="5000" id="Message" name="contact[body]" class="textarea w-input"></textarea>
+              <input type="submit" data-wait="{{ 'contact.form.please_wait' | t }}" class="submit-button w-button" value="{{ 'contact.form.submit' | t }}">
+            </div>
+          {% endform %}
+          {% if form.posted_successfully? %}
+            <div class="w-form-done" style="display:block;">
+              <div>{{ 'contact.form.success' | t }}</div>
+            </div>
+          {% endif %}
+          {% if form.errors %}
+            <div class="w-form-fail" style="display:block;">
+              <div>{{ 'contact.form.error' | t }}</div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Over 15+ years supplying the global MGB industry"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Hero"
+    }
+  ]
+}
+{% endschema %}

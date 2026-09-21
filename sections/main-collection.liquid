@@ -1,0 +1,50 @@
+<section class="products-section">
+  <div class="products-wrapper" style="padding-top: 120px;">
+    <div class="title">
+      <div class="div-block-28">
+        <h1 class="heading-13"><strong>{{ collection.title }}</strong></h1>
+        {%- if collection.description != blank -%}
+          <div class="text-block-4">{{ collection.description }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="p-wrapper">
+      {%- paginate collection.products by 12 -%}
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      {%- endpaginate -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <div class="collection-pagination" style="display: flex; justify-content: center; gap: 12px; padding: 40px 0;">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" class="button w-button">{{ 'general.previous' | t }}</a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" class="nav-link">{{ part.title }}</a>
+          {%- else -%}
+            <span class="nav-link w--current" style="font-weight: 700;">{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" class="button w-button">{{ 'general.next' | t }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main Collection"
+    }
+  ]
+}
+{% endschema %}

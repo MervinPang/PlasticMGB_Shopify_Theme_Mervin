@@ -1,0 +1,101 @@
+{%- if section.settings.background_image != blank -%}
+  {%- assign bg_image_url = section.settings.background_image | image_url: width: 2000 -%}
+{%- else -%}
+  {%- assign bg_image_url = 'blueprints_of_wheel_202605281133.jpeg' | asset_url -%}
+{%- endif -%}
+
+<section class="products-section" style="background-image: url('{{ bg_image_url }}');">
+  <div class="products-wrapper">
+    <div class="title">
+      <div class="div-block-28">
+        <h1 class="heading-13"><strong>{{ section.settings.heading | default: 'Complete MGB accessories range' }}</strong></h1>
+        <div class="text-block-4">{{ section.settings.subheading | default: 'EN840/RAL 951 certified components for 240L–1100L waste containers' }}</div>
+      </div>
+    </div>
+    <div class="p-wrapper">
+      {%- assign shown_ids = '' -%}
+      {%- assign has_products = false -%}
+
+      {%- comment -%} ── Primary collection (e.g. Castors) ── {%- endcomment -%}
+      {%- assign primary = collections[section.settings.collection_primary] -%}
+      {%- if primary != blank and primary.products.size > 0 -%}
+        {%- for product in primary.products limit: section.settings.products_limit -%}
+          {%- assign has_products = true -%}
+          {%- assign shown_ids = shown_ids | append: product.id | append: ',' -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- comment -%} ── Secondary collection (e.g. Accessories) — skips duplicates ── {%- endcomment -%}
+      {%- assign secondary = collections[section.settings.collection_secondary] -%}
+      {%- if secondary != blank and secondary.products.size > 0 -%}
+        {%- for product in secondary.products limit: section.settings.products_limit -%}
+          {%- assign id_check = product.id | append: ',' -%}
+          {%- unless shown_ids contains id_check -%}
+            {%- assign has_products = true -%}
+            {%- assign shown_ids = shown_ids | append: product.id | append: ',' -%}
+            {% render 'product-card', product: product %}
+          {%- endunless -%}
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- unless has_products -%}
+        <div style="text-align: center; width: 100%; padding: 40px; color: #fff; font-family: Exo, sans-serif;">
+          {{ 'products.product.no_products_found' | t }}
+        </div>
+      {%- endunless -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Products Grid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Complete MGB accessories range"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "EN840/RAL 951 certified components for 240L–1100L waste containers"
+    },
+    {
+      "type": "collection",
+      "id": "collection_primary",
+      "label": "Primary collection (shown first)",
+      "info": "e.g. Castors — these products appear at the top of the grid"
+    },
+    {
+      "type": "collection",
+      "id": "collection_secondary",
+      "label": "Secondary collection (shown after)",
+      "info": "e.g. Accessories — these products appear below the primary collection"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Max products per collection",
+      "min": 2,
+      "max": 16,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products Grid"
+    }
+  ]
+}
+{% endschema %}

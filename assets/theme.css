@@ -1,0 +1,208 @@
+/**
+ * theme.css — Additional styles for Shopify-specific elements
+ * NOT present in the Webflow export. Does NOT modify any existing class names.
+ */
+
+/* ===========================
+   Cart icon badge in header
+   =========================== */
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cart-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+.cart-count-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #133f90;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  font-family: 'Exo', sans-serif;
+}
+
+
+/* ===========================
+   Product page — gallery
+   =========================== */
+
+.product-right-side {
+  flex: 1;
+  padding: 0 40px;
+}
+
+.product-main-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.product-thumbnails {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.product-thumbnail {
+  border: 2px solid transparent;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.product-thumbnail:hover,
+.product-thumbnail--active {
+  border-color: #133f90;
+}
+
+.product-thumbnail img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* ===========================
+   Product page — info
+   =========================== */
+.product-info-wrapper {
+  padding: 20px 0;
+}
+
+.product-price-wrapper {
+  margin: 16px 0 24px;
+}
+
+.product-price {
+  font-family: 'Exo', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #133f90;
+}
+
+.product-price--sale {
+  color: #c0392b;
+}
+
+.product-price--compare {
+  font-size: 1.1rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 12px;
+  font-weight: 400;
+}
+
+.product-description-body {
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+/* ===========================
+   Product page — options & form
+   =========================== */
+.product-options {
+  margin-bottom: 20px;
+}
+
+.product-option {
+  margin-bottom: 12px;
+}
+
+.product-option-select {
+  width: 100%;
+  max-width: 300px;
+}
+
+.product-quantity-row {
+  margin-bottom: 20px;
+}
+
+.product-quantity-input {
+  width: 80px;
+  text-align: center;
+}
+
+.product-add-to-cart {
+  min-width: 200px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.product-add-to-cart:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   Cart page
+   =========================== */
+.cart-section {
+  min-height: 60vh;
+}
+
+.cart-table th {
+  font-family: 'Exo', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  color: #666;
+}
+
+.cart-empty {
+  font-family: 'Exo', sans-serif;
+}
+
+/* ===========================
+   Collection page
+   =========================== */
+.collection-pagination a,
+.collection-pagination span {
+  font-family: 'Exo', sans-serif;
+}
+
+/* ===========================
+   Responsive adjustments
+   =========================== */
+@media (max-width: 767px) {
+  .product-container {
+    flex-direction: column;
+  }
+
+  .product-right-side {
+    padding: 20px;
+  }
+
+  .cart-table td {
+    font-size: 0.9rem;
+  }
+
+  .cart-table td:first-child {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+

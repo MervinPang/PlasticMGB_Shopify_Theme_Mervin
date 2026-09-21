@@ -1,0 +1,135 @@
+<section class="procurement-section">
+  <div class="procurement-header">
+    <div class="eyebrow">
+      <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="svg-2">
+        <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" fill="currentColor" class="path"></path>
+      </svg>
+      <h1 class="heading-6">{{ section.settings.eyebrow | default: 'OUR CREDENTIALS' }}</h1>
+      <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="svg-2">
+        <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" fill="currentColor" class="path"></path>
+      </svg>
+    </div>
+    <h1 class="procurement-head"><strong class="bold-text-6">{{ section.settings.heading | default: 'Why Procurement Teams Choose Us' }}</strong></h1>
+  </div>
+  <div class="procurement-card-section">
+    <div class="procurement-wrapper">
+      {% for block in section.blocks %}
+        <div data-w-id="{{ block.id }}" class="procurement-card" {{ block.shopify_attributes }}>
+          <div class="div-block-30">
+            {% case block.settings.icon %}
+              {% when 'shield' %}
+                <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="procurement-icon">
+                  <path d="M21 11C21 16.55 17.16 21.74 12 23C6.84 21.74 3 16.55 3 11V5L12 1L21 5V11ZM12 21C15.75 20 19 15.54 19 11.22V6.3L12 3.18L5 6.3V11.22C5 15.54 8.25 20 12 21ZM10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9" fill="currentColor"></path>
+                </svg>
+              {% when 'chart' %}
+                <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="procurement-icon">
+                  <path d="M6,13H2a1,1,0,0,0-1,1v8a1,1,0,0,0,1,1H6a1,1,0,0,0,1-1V14A1,1,0,0,0,6,13ZM5,21H3V15H5ZM22,9H18a1,1,0,0,0-1,1V22a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1V10A1,1,0,0,0,22,9ZM21,21H19V11h2ZM14,1H10A1,1,0,0,0,9,2V22a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1V2A1,1,0,0,0,14,1ZM13,21H11V3h2Z" fill="currentColor"></path>
+                </svg>
+              {% when 'pricing' %}
+                <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="procurement-icon">
+                  <path d="M14,11H13V7h2a1,1,0,0,1,1,1,1,1,0,0,0,2,0,3,3,0,0,0-3-3H13V3a1,1,0,0,0-2,0V5H10a4,4,0,0,0,0,8h1v4H9a1,1,0,0,1-1-1,1,1,0,0,0-2,0,3,3,0,0,0,3,3h2v2a1,1,0,0,0,2,0V19h1a4,4,0,0,0,0-8Zm-3,0H10a2,2,0,0,1,0-4h1Zm3,6H13V13h1a2,2,0,0,1,0,4Z" fill="currentColor"></path>
+                </svg>
+              {% when 'cube' %}
+                <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="procurement-icon">
+                  <path d="M21 16.5C21 16.88 20.79 17.21 20.47 17.38L12.57 21.82C12.41 21.94 12.21 22 12 22C11.79 22 11.59 21.94 11.43 21.82L3.53 17.38C3.21 17.21 3 16.88 3 16.5V7.5C3 7.12 3.21 6.79 3.53 6.62L11.43 2.18C11.59 2.06 11.79 2 12 2C12.21 2 12.41 2.06 12.57 2.18L20.47 6.62C20.79 6.79 21 7.12 21 7.5V16.5ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7Z" fill="currentColor"></path>
+                </svg>
+            {% endcase %}
+          </div>
+          <div class="procurement-text">
+            <h1 class="procurement-heading"><strong>{{ block.settings.title }}</strong></h1>
+            <div class="procurement-subtext">{{ block.settings.subtext }}</div>
+            <ul role="list" class="list">
+              {% if block.settings.bullet_1 != blank %}
+                <li class="list-item">
+                  <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="procurement-checkmark">
+                    <path d="M18.71,7.21a1,1,0,0,0-1.42,0L9.84,14.67,6.71,11.53A1,1,0,1,0,5.29,13l3.84,3.84a1,1,0,0,0,1.42,0l8.16-8.16A1,1,0,0,0,18.71,7.21Z" fill="currentColor"></path>
+                  </svg>
+                  <div class="text-block-10">{{ block.settings.bullet_1 }}</div>
+                </li>
+              {% endif %}
+              {% if block.settings.bullet_2 != blank %}
+                <li class="list-item">
+                  <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="procurement-checkmark">
+                    <path d="M18.71,7.21a1,1,0,0,0-1.42,0L9.84,14.67,6.71,11.53A1,1,0,1,0,5.29,13l3.84,3.84a1,1,0,0,0,1.42,0l8.16-8.16A1,1,0,0,0,18.71,7.21Z" fill="currentColor"></path>
+                  </svg>
+                  <div class="text-block-10">{{ block.settings.bullet_2 }}</div>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="procurement-request">
+    <div class="text-block-11">{{ 'sections.procurement.certifications_note' | t }}</div>
+    <a href="{{ pages['contact-us'].url | default: '/pages/contact-us' }}" class="link">{{ 'sections.procurement.request_credentials' | t }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Procurement Credentials",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "OUR CREDENTIALS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Procurement Teams Choose Us"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "procurement_card",
+      "name": "Procurement Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shield", "label": "Shield (Certification)" },
+            { "value": "chart", "label": "Chart (Volume)" },
+            { "value": "pricing", "label": "Dollar (Pricing)" },
+            { "value": "cube", "label": "Cube (Customisation)" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card title",
+          "default": "EN840/RAL 951 compliant"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Card description"
+        },
+        {
+          "type": "text",
+          "id": "bullet_1",
+          "label": "Bullet point 1"
+        },
+        {
+          "type": "text",
+          "id": "bullet_2",
+          "label": "Bullet point 2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Procurement Credentials"
+    }
+  ]
+}
+{% endschema %}

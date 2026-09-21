@@ -1,0 +1,792 @@
+{%- comment -%}
+  Redesigned Main Product Section for B2B Catalog.
+  Replaces prices with quote requests and introduces custom spec tables.
+{%- endcomment -%}
+
+<style>
+  .product-section {
+    padding: 140px 20px 60px;
+    background-color: #fff;
+    color: #333;
+    font-family: 'Exo', sans-serif;
+  }
+
+  .product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .product-left-side {
+    flex: 1.2;
+    min-width: 320px;
+    max-width: 550px;
+  }
+
+  .product-right-side {
+    flex: 1;
+    min-width: 320px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .product-main-photo-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .product-main-image-container {
+    border: 3px solid #133f90;
+    border-radius: 12px;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 8px 25px rgba(19, 63, 144, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-main-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .product-thumbnails {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .product-thumbnail {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 6px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-thumbnail:hover, .product-thumbnail--active {
+    border-color: #e8ab3f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(232, 171, 63, 0.15);
+  }
+
+  .product-thumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .product-option {
+    margin-bottom: 18px;
+  }
+
+  .product-option-select {
+    height: 50px;
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 15px;
+    color: #333;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23133f90' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 14px;
+  }
+
+  .product-option-select:focus {
+    border-color: #133f90;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(19, 63, 144, 0.1);
+  }
+
+  .product-quantity-row {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-quantity-input {
+    width: 90px;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 15px;
+    font-family: inherit;
+    color: #333;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+
+  .product-add-to-cart {
+    flex: 1.2;
+    min-width: 200px;
+    background-color: #133f90;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(19, 63, 144, 0.2);
+    font-family: inherit;
+    font-size: 14px;
+  }
+
+  .product-add-to-cart:hover {
+    background-color: #e8ab3f;
+    box-shadow: 0 4px 12px rgba(232, 171, 63, 0.3);
+  }
+
+  .product-direct-quote {
+    flex: 1;
+    min-width: 200px;
+    background-color: transparent;
+    color: #133f90;
+    border: 2px solid #133f90;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .product-direct-quote:hover {
+    background-color: #133f90;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(19, 63, 144, 0.15);
+  }
+
+  .product-b2b-bullets {
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product-b2b-bullets li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .product-b2b-bullets li svg {
+    color: #e8ab3f;
+    flex-shrink: 0;
+  }
+
+  /* Specifications Table styling */
+  .specifications-wrapper {
+    margin-top: 30px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 25px;
+  }
+
+  .specifications-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #133f90;
+    margin-bottom: 15px;
+  }
+
+  .specifications-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+  }
+
+  .specifications-table tr {
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .specifications-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .specifications-table tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  .specifications-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .specifications-table td.label-cell {
+    font-weight: 700;
+    color: #133f90;
+    width: 40%;
+    border-right: 1px solid #e2e8f0;
+  }
+
+  .specifications-table td.value-cell {
+    color: #475569;
+  }
+
+  .product-description-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #475569;
+  }
+
+  .product-description-container {
+    margin-top: 35px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 25px;
+  }
+
+  .product-description-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #133f90;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Override Webflow's rigid height constraints to allow scrolling specifications & details */
+  .product-section {
+    height: auto !important;
+    padding: 140px 20px 60px !important;
+  }
+  .product-container {
+    height: auto !important;
+    margin-top: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+  .product-left-side {
+    height: auto !important;
+    flex: 1.2 !important;
+    max-width: 550px !important;
+  }
+  .product-main-photo-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Trigger button for mobile */
+  .mobile-description-trigger {
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: rgba(19, 63, 144, 0.05);
+    border: 2px dashed #133f90;
+    border-radius: 8px;
+    color: #133f90;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-description-trigger:hover,
+  .mobile-description-trigger:focus {
+    background-color: rgba(19, 63, 144, 0.09);
+    outline: none;
+  }
+
+  /* Mobile Slide-up Drawer Overlay */
+  .mobile-desc-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .mobile-desc-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-desc-drawer {
+    width: 100%;
+    background-color: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-desc-overlay.active .mobile-desc-drawer {
+    transform: translateY(0);
+  }
+
+  .mobile-desc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .mobile-desc-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #133f90;
+    margin: 0;
+  }
+
+  .mobile-desc-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .heading-7 {
+    padding-top: 3vh;
+    padding-bottom: 5vh;
+  }
+
+  .mobile-desc-content {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .desktop-only {
+    display: block !important;
+  }
+  .mobile-only {
+    display: none !important;
+  }
+
+  @media screen and (min-width: 992px) {
+    .product-right-side {
+      position: sticky;
+      top: 140px;
+      align-self: flex-start;
+    }
+  }
+
+  /* Responsive tweaks */
+  @media screen and (max-width: 991px) {
+    .product-section {
+      padding-top: 100px !important;
+      height: auto !important;
+    }
+    .product-container {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      height: auto !important;
+      gap: 30px !important;
+    }
+    .product-left-side {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex: none !important;
+      height: auto !important;
+    }
+    .product-right-side {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex: none !important;
+      height: auto !important;
+    }
+    .desktop-only {
+      display: none !important;
+    }
+    .mobile-only {
+      display: block !important;
+    }
+    .mobile-description-trigger {
+      display: flex !important;
+    }
+  }
+</style>
+
+<section class="product-section">
+  <div class="product-container">
+    <div class="product-left-side">
+      <div class="product-main-photo-wrapper">
+        <div class="product-main-image-container">
+          {%- if product.featured_image -%}
+            <img
+              id="product-main-image"
+              src="{{ product.featured_image | image_url: width: 800 }}"
+              alt="{{ product.featured_image.alt | escape }}"
+              class="product-main-image"
+              loading="eager"
+            >
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'product-main-image' }}
+          {%- endif -%}
+        </div>
+        <div class="product-thumbnails">
+          {%- for image in product.images -%}
+            <button
+              type="button"
+              class="product-thumbnail{% if forloop.first %} product-thumbnail--active{% endif %}"
+              data-image-url="{{ image | image_url: width: 800 }}"
+              data-image-id="{{ image.id }}"
+              aria-label="View {{ image.alt | default: product.title | escape }}"
+            >
+              <img
+                src="{{ image | image_url: width: 150 }}"
+                alt="{{ image.alt | default: product.title | escape }}"
+                loading="lazy"
+                width="80"
+                height="80"
+              >
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="product-description-container desktop-only">
+        <h3 class="product-description-title">{{ 'products.product.product_description' | t }}</h3>
+        <div class="product-description-body">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+    
+    <div class="product-right-side">
+      <div class="product-info-wrapper">
+        <div class="eyebrow">
+          <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="svg-2">
+            <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" fill="currentColor" class="path"></path>
+          </svg>
+          <h1 class="heading-6">{{ product.type | upcase | default: 'MGB ACCESSORIES' }}</h1>
+        </div>
+        <h1 class="heading-7"><strong class="bold-text-2">{{ product.title }}</strong></h1>
+
+        <button type="button" class="mobile-description-trigger mobile-only" id="MobileDescTrigger">
+          <span>{{ 'products.product.read_product_description' | t }}</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {%- form 'product', product -%}
+          {{ form.errors | default_errors }}
+
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="product-variant-id">
+
+          {%- if product.has_only_default_variant == false -%}
+            <div class="product-options">
+              {%- for option in product.options_with_values -%}
+                <div class="product-option">
+                  <label class="field-label-2" for="option-{{ option.name | handleize }}">{{ option.name }}</label>
+                  <select
+                    id="option-{{ option.name | handleize }}"
+                    class="w-input product-option-select"
+                    data-option-index="{{ forloop.index0 }}"
+                    onchange="updateVariant()"
+                  >
+                    {%- for value in option.values -%}
+                      <option
+                        value="{{ value | escape }}"
+                        {% if product.selected_or_first_available_variant.options[forloop.parentloop.index0] == value %}selected{% endif %}
+                      >
+                        {{ value }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          <input
+            type="hidden"
+            id="product-quantity"
+            name="quantity"
+            value="1"
+          >
+
+          <div class="button-group">
+            <button
+              type="submit"
+              class="submit-button w-button product-add-to-cart"
+              {% unless product.available %}disabled{% endunless %}
+              id="add-to-cart-button"
+            >
+              {%- if product.available -%}
+                {{ 'products.product.add_to_quote_list' | t }}
+              {%- else -%}
+                {{ 'products.product.temporarily_unavailable' | t }}
+              {%- endif -%}
+            </button>
+            
+            <a href="{{ pages['contact-us'].url | default: '/pages/contact-us' }}?product={{ product.title | url_encode }}" class="product-direct-quote">
+              {{ 'products.product.request_direct_quote' | t }}
+            </a>
+          </div>
+        {%- endform -%}
+
+        <ul class="product-b2b-bullets">
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            {{ 'products.product.b2b_bullet_certified' | t }}
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            {{ 'products.product.b2b_bullet_shipping' | t }}
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            {{ 'products.product.b2b_bullet_oem' | t }}
+          </li>
+        </ul>
+
+        {%- comment -%} Technical Specifications Table - Powered by product tags like "Load Capacity: 250kg" {%- endcomment -%}
+        {%- assign has_specs = false -%}
+        {%- for tag in product.tags -%}
+          {%- if tag contains ':' -%}
+            {%- assign has_specs = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if has_specs -%}
+          <div class="specifications-wrapper">
+            <h3 class="specifications-title">{{ 'products.product.technical_specifications' | t }}</h3>
+            <table class="specifications-table">
+              <tbody>
+                {%- for tag in product.tags -%}
+                  {%- if tag contains ':' -%}
+                    {%- assign parts = tag | split: ':' -%}
+                    {%- assign key = parts[0] | strip -%}
+                    {%- assign value = parts[1] | strip -%}
+                    <tr>
+                      <td class="label-cell">{{ key }}</td>
+                      <td class="value-cell">{{ value }}</td>
+                    </tr>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tbody>
+            </table>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Mobile Slide-up Description Drawer Overlay -->
+    <div class="mobile-desc-overlay" id="MobileDescOverlay" role="dialog" aria-modal="true" aria-labelledby="MobileDescTitle">
+      <div class="mobile-desc-drawer">
+        <div class="mobile-desc-header">
+          <h2 id="MobileDescTitle" class="mobile-desc-title">{{ 'products.product.product_description' | t }}</h2>
+          <button type="button" class="mobile-desc-close" id="MobileDescClose" aria-label="{{ 'accessibility.close_description' | t }}">&times;</button>
+        </div>
+        <div class="mobile-desc-content">
+          <div class="product-description-body">
+            {{ product.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  /* Variant data for JS-based variant selection */
+  var productVariants = {{ product.variants | json }};
+  var labelAddToQuote = {{ 'products.product.add_to_quote_list' | t | json }};
+  var labelUnavailable = {{ 'products.product.temporarily_unavailable' | t | json }};
+  var labelAddedToQuote = {{ 'products.product.added_to_quote' | t | json }};
+
+  function updateVariant() {
+    var selects = document.querySelectorAll('.product-option-select');
+    var selectedOptions = [];
+    selects.forEach(function(s) { selectedOptions.push(s.value); });
+
+    var matched = productVariants.find(function(v) {
+      return v.options.every(function(opt, i) {
+        return opt === selectedOptions[i];
+      });
+    });
+
+    if (matched) {
+      document.getElementById('product-variant-id').value = matched.id;
+      var btn = document.getElementById('add-to-cart-button');
+      if (matched.available) {
+        btn.disabled = false;
+        btn.textContent = labelAddToQuote;
+      } else {
+        btn.disabled = true;
+        btn.textContent = labelUnavailable;
+      }
+      /* If variant has an image, swap main photo */
+      if (matched.featured_image) {
+        var mainImg = document.getElementById('product-main-image');
+        if (mainImg) {
+          mainImg.src = matched.featured_image.src.replace(/(\.[^.]+)$/, '_800x$1');
+        }
+      }
+    }
+  }
+
+  function initProductPage() {
+    /* Thumbnail gallery click */
+    var thumbs = document.querySelectorAll('.product-thumbnail');
+    thumbs.forEach(function(thumb) {
+      thumb.addEventListener('click', function() {
+        var url = this.getAttribute('data-image-url');
+        var mainImg = document.getElementById('product-main-image');
+        if (mainImg && url) {
+          mainImg.src = url;
+        }
+        thumbs.forEach(function(t) { t.classList.remove('product-thumbnail--active'); });
+        this.classList.add('product-thumbnail--active');
+      });
+    });
+
+    /* AJAX Add to Quote List */
+    var form = document.querySelector('.product-section form[action*="/cart/add"]');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(form);
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          /* Update cart count in header */
+          fetch('/cart.js')
+            .then(function(r) { return r.json(); })
+            .then(function(cart) {
+              var badge = document.getElementById('cart-count-badge');
+              if (badge) {
+                badge.textContent = cart.item_count;
+                badge.style.display = cart.item_count > 0 ? '' : 'none';
+              }
+            });
+          /* Visual feedback */
+          var btn = document.getElementById('add-to-cart-button');
+          var original = btn.textContent;
+          btn.textContent = labelAddedToQuote;
+          setTimeout(function() { btn.textContent = original; }, 2000);
+        })
+        .catch(function(err) {
+          console.error('Add to quote error:', err);
+        });
+      });
+    }
+
+    /* Mobile Description Drawer Toggle */
+    var descOverlay = document.getElementById('MobileDescOverlay');
+    var descTrigger = document.getElementById('MobileDescTrigger');
+    var descClose = document.getElementById('MobileDescClose');
+
+    if (descTrigger && descOverlay) {
+      descTrigger.addEventListener('click', function() {
+        descOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // prevent background scrolling
+      });
+    }
+
+    if (descClose && descOverlay) {
+      descClose.addEventListener('click', function() {
+        descOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+      
+      descOverlay.addEventListener('click', function(e) {
+        if (e.target === descOverlay) {
+          descOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  }
+
+  // Safe initialize wrapper
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProductPage);
+  } else {
+    initProductPage();
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main Product"
+    }
+  ]
+}
+{% endschema %}

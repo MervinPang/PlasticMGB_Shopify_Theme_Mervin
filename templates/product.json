@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main-product": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "scroll": {
+      "type": "product-scroll",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta",
+      "settings": {}
+    }
+  },
+  "order": ["main-product", "scroll", "cta"]
+}

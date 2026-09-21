@@ -1,0 +1,100 @@
+{%- if section.settings.background_image != blank -%}
+  {%- assign bg_image_url = section.settings.background_image | image_url: width: 2000 -%}
+{%- else -%}
+  {%- assign bg_image_url = 'Wheels_on_blueprint_CAD_files_202605281042-transformed.jpeg' | asset_url -%}
+{%- endif -%}
+
+{%- assign cta_wrapper_id = "1b875b59-e0ff-d623-eb20-af86cb65fce3" -%}
+{%- assign cta_button_id = "1b875b59-e0ff-d623-eb20-af86cb65fce7" -%}
+
+{%- if request.path contains '/about-us' -%}
+  {%- assign cta_wrapper_id = "f561f1bf-48cb-cc3e-fe91-e57db007739a" -%}
+  {%- assign cta_button_id = "f561f1bf-48cb-cc3e-fe91-e57db007739e" -%}
+{%- elsif request.path contains '/contact-us' -%}
+  {%- assign cta_wrapper_id = "b3c35681-9040-1c09-4805-caba77e82511" -%}
+  {%- assign cta_button_id = "b3c35681-9040-1c09-4805-caba77e82515" -%}
+{%- elsif request.path contains '/why-choose-us' -%}
+  {%- assign cta_wrapper_id = "8e35dc4c-9e1c-3bc9-045e-8e352ed4b0f9" -%}
+  {%- assign cta_button_id = "8e35dc4c-9e1c-3bc9-045e-8e352ed4b0fd" -%}
+{%- elsif template contains 'product' or request.path contains '/products/' -%}
+  {%- assign cta_wrapper_id = "841c3f96-3f8d-6b37-9075-853bba3d9d28" -%}
+  {%- assign cta_button_id = "841c3f96-3f8d-6b37-9075-853bba3d9d2c" -%}
+{%- endif -%}
+
+<section class="cta">
+  <style>
+    .cta .rt-button-five.rt-banner-one-button {
+      height: auto !important;
+      min-height: 58px !important;
+      padding: 10px 58px 10px 24px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      position: relative !important;
+    }
+    .cta .rt-hero-button-text {
+      font-size: clamp(12px, 1.1vw, 16px) !important;
+      white-space: normal !important;
+      text-align: center !important;
+      line-height: 1.25 !important;
+      margin-right: 0 !important;
+    }
+  </style>
+  <div class="w-layout-blockcontainer rt-component-container-2 w-container">
+    <div data-w-id="{{ cta_wrapper_id }}" class="w-layout-hflex rt-service-one-scroll-bg-wrapper-two rt-service-three-contact-wrapper rt-call-to-action-v7 rt-background-dark" style="background-image: linear-gradient(#00000080, #00000080), url('{{ bg_image_url }}');">
+      <div class="w-layout-vflex rt-service-three-connect-block">
+        <h2 class="rt-service-three-contact-heading">{{ section.settings.heading | default: "Have A Project In Mind? Let's Connect" }}</h2>
+        <a href="{{ pages['contact-us'].url | default: '/pages/contact-us' }}" data-w-id="{{ cta_button_id }}" class="rt-button-five rt-banner-one-button w-inline-block">
+          <div class="rt-hero-button-text">{{ section.settings.button_text | default: 'Contact Us Today' }}</div>
+          <div class="w-layout-hflex rt-hero-button-icon-wrap">
+            <div style="width:20%" class="rt-hero-button-icon-two"><img width="7" height="12" alt="Right Arrow" src="{{ 'Vector-1.svg' | asset_url }}" loading="lazy" class="rt-hero-button-image"></div>
+          </div>
+        </a>
+      </div>
+      <div class="w-layout-vflex rt-service-three-contact-details-block">
+        <div class="w-layout-vflex rt-service-three-contact">
+          <div class="rt-heading-six rt-project-text">{{ 'sections.cta.project_offers' | t }}</div>
+          <a href="mailto:{{ settings.contact_email | default: 'sales@plasticmgb.com' }}" class="rt-category-cards-text rt-text-white rt-text-lowercase">{{ settings.contact_email | default: 'sales@plasticmgb.com' }}</a>
+        </div>
+        <div class="rt-divider rt-service-three-contact-divider"></div>
+        <div class="w-layout-vflex rt-service-three-contact">
+          <div class="rt-heading-six rt-project-text">{{ 'sections.cta.call_us' | t }}</div>
+          <a href="tel:{{ settings.contact_phone | default: '+86 13715570933' | remove: ' ' }}" class="rt-category-cards-text rt-text-white">{{ settings.contact_phone | default: '+86 137 1557 0933' }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Call to Action",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Have A Project In Mind? Let's Connect"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Contact Us Today"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Call to Action"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "contact-hero": {
+      "type": "contact-hero",
+      "settings": {}
+    },
+    "scroll": {
+      "type": "product-scroll",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta",
+      "settings": {}
+    }
+  },
+  "order": ["contact-hero", "scroll", "cta"]
+}

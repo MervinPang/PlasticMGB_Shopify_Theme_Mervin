@@ -1,0 +1,456 @@
+
+
+{%- comment -%} ── Who We Are text with translation fallback ── {%- endcomment -%}
+{%- assign wwa_eyebrow = section.settings.eyebrow -%}
+{%- if wwa_eyebrow == blank or wwa_eyebrow == 'WHO WE ARE' -%}
+  {%- assign wwa_eyebrow = 'sections.who_we_are.eyebrow' | t -%}
+{%- endif -%}
+{%- assign wwa_heading = section.settings.heading -%}
+{%- if wwa_heading == blank or wwa_heading == 'A manufacturer built on precision and long-term partnerships' -%}
+  {%- assign wwa_heading = 'sections.who_we_are.heading' | t -%}
+{%- endif -%}
+{%- assign wwa_description = section.settings.description -%}
+{%- assign wwa_default_desc = 'Plastic MGB Co. Ltd was established in 2011 as a division of a larger wheel and castor manufacturing group based in Guangdong, China. From the outset, the business focused exclusively on accessories for mobile garbage bins — a specialist niche demanding exacting standards in load capacity, material durability and dimensional consistency.<br><br>Today we produce over 5 million castor wheels and 8 million steel axles annually, supplying OEM manufacturers across Europe, Asia Pacific, the Middle East and the Americas. MGB accessories are all we do — and that focus is what makes us the right partner for serious OEM buyers.' -%}
+{%- if wwa_description == blank or wwa_description == wwa_default_desc -%}
+  {%- assign wwa_description = 'sections.who_we_are.description_html' | t -%}
+{%- endif -%}
+
+<style>
+  /* ══════════════════════════════════════════════════════
+     About Combined — merged Who We Are + Dropdown Card
+     ══════════════════════════════════════════════════════ */
+
+  .about-combined-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin-top: 13vh;
+  }
+
+
+
+  /* ── Two-column container ── */
+  .about-combined-{{ section.id }} .about-combined__container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 5vh 48px 100px;
+    width: 100%;
+    align-items: start;
+  }
+
+  /* ── Left column: Who We Are ── */
+  .about-combined-{{ section.id }} .about-combined__left {
+    color: #1a1a2e;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__left .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__left .eyebrow .svg-2 {
+    width: 20px;
+    height: 20px;
+    color: {{ section.settings.accent_color | default: '#e8ab3f' }};
+    flex-shrink: 0;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__left .heading-6 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: {{ section.settings.accent_color | default: '#e8ab3f' }};
+    margin: 0;
+    line-height: 1;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__left .heading-7 {
+    font-size: clamp(30px, 3.6vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 28px 0;
+    color: #1a1a2e;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__left .text-block-8-copy {
+    font-size: clamp(15px, 1.2vw, 19px);
+    line-height: 1.75;
+    color: #555;
+  }
+
+  /* ── Right column: Accordion Card ── */
+  .about-combined-{{ section.id }} .about-combined__right {
+    position: sticky;
+    top: 120px;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__card {
+    background: #f5f6f8;
+    border: 1px solid #e2e4e9;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .about-combined-{{ section.id }} .about-combined__card-header {
+    padding: 26px 32px 18px;
+    border-bottom: 1px solid #e2e4e9;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: {{ section.settings.accent_color | default: '#e8ab3f' }};
+    margin: 0;
+    line-height: 1;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__card-title .svg-2 {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: {{ section.settings.accent_color | default: '#e8ab3f' }};
+  }
+
+  /* ── Accordion items ── */
+  .about-combined-{{ section.id }} .about-combined__accordion-item {
+    border-bottom: 1px solid #e2e4e9;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    background: transparent;
+    border: none;
+    color: #1a1a2e;
+    font-size: clamp(16px, 1.2vw, 20px);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    line-height: 1.4;
+    transition: background 0.25s ease, padding-left 0.25s ease;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-trigger:hover {
+    background: rgba(0, 0, 0, 0.03);
+    padding-left: 36px;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-item.is-open .about-combined__accordion-trigger {
+    color: {{ section.settings.accent_color | default: '#e8ab3f' }};
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-chevron {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-left: 16px;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    color: {{ section.settings.accent_color | default: '#e8ab3f' }};
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-item.is-open .about-combined__accordion-chevron {
+    transform: rotate(180deg);
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-item.is-open .about-combined__accordion-content {
+    max-height: 600px;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-body {
+    padding: 0 32px 24px;
+    font-size: clamp(14px, 1.1vw, 17px);
+    line-height: 1.75;
+    color: #666;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-body p {
+    margin: 0 0 12px 0;
+  }
+
+  .about-combined-{{ section.id }} .about-combined__accordion-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Fade-up animation ── */
+  @keyframes aboutCombinedFadeUp-{{ section.id }} {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .about-combined-{{ section.id }} .about-combined__fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  .about-combined-{{ section.id }} .about-combined__fade-up.is-visible {
+    animation: aboutCombinedFadeUp-{{ section.id }} 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* ── Tablet ── */
+  @media screen and (max-width: 991px) {
+    .about-combined-{{ section.id }} {
+      min-height: auto;
+    }
+
+    .about-combined-{{ section.id }} .about-combined__container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 72px 28px;
+    }
+
+    .about-combined-{{ section.id }} .about-combined__right {
+      position: static;
+    }
+  }
+
+  /* ── Mobile ── */
+  @media screen and (max-width: 480px) {
+    .about-combined-{{ section.id }} .about-combined__container {
+      padding: 48px 16px;
+      gap: 32px;
+    }
+
+    .about-combined-{{ section.id }} .about-combined__accordion-trigger {
+      padding: 16px 20px;
+      font-size: 15px;
+    }
+
+    .about-combined-{{ section.id }} .about-combined__accordion-trigger:hover {
+      padding-left: 24px;
+    }
+
+    .about-combined-{{ section.id }} .about-combined__accordion-body {
+      padding: 0 20px 20px;
+    }
+
+    .about-combined-{{ section.id }} .about-combined__card-header {
+      padding: 20px 20px 14px;
+    }
+  }
+</style>
+
+<section class="about-combined-{{ section.id }}">
+
+  <div class="about-combined__container">
+    <!-- ── Left: Who We Are ── -->
+    <div class="about-combined__left about-combined__fade-up">
+      <div class="eyebrow">
+        <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="svg-2">
+          <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" fill="currentColor" class="path"></path>
+        </svg>
+        <h1 class="heading-6"><strong class="bold-text-4">{{ wwa_eyebrow }}</strong></h1>
+      </div>
+      <h1 class="heading-7"><strong class="bold-text-2">{{ wwa_heading }}</strong></h1>
+      <div class="text-block-8-copy">{{ wwa_description }}</div>
+    </div>
+
+    <!-- ── Right: Dropdown Accordion Card ── -->
+    <div class="about-combined__right about-combined__fade-up" style="animation-delay: 0.15s;">
+      <div class="about-combined__card">
+        {%- if section.settings.card_heading != blank -%}
+          <div class="about-combined__card-header">
+            <h2 class="about-combined__card-title">
+              <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="svg-2">
+                <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" fill="currentColor" class="path"></path>
+              </svg>
+              {{ section.settings.card_heading }}
+            </h2>
+          </div>
+        {%- endif -%}
+
+        {% for block in section.blocks %}
+          <div class="about-combined__accordion-item{% if forloop.first %} is-open{% endif %}" {{ block.shopify_attributes }}>
+            <button class="about-combined__accordion-trigger" type="button" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
+              <span>{{ block.settings.title }}</span>
+              <svg class="about-combined__accordion-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="about-combined__accordion-content">
+              <div class="about-combined__accordion-body">
+                {{ block.settings.content }}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var section = document.querySelector('.about-combined-{{ section.id }}');
+    if (!section) return;
+
+    /* ── Accordion toggle ── */
+    var triggers = section.querySelectorAll('.about-combined__accordion-trigger');
+    triggers.forEach(function(trigger) {
+      trigger.addEventListener('click', function() {
+        var item = this.closest('.about-combined__accordion-item');
+        var isOpen = item.classList.contains('is-open');
+
+        /* Close all */
+        section.querySelectorAll('.about-combined__accordion-item').forEach(function(el) {
+          el.classList.remove('is-open');
+          el.querySelector('.about-combined__accordion-trigger').setAttribute('aria-expanded', 'false');
+        });
+
+        /* Open clicked if it was closed */
+        if (!isOpen) {
+          item.classList.add('is-open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ── Scroll-triggered fade-up ── */
+    var fadeEls = section.querySelectorAll('.about-combined__fade-up');
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      fadeEls.forEach(function(el) { observer.observe(el); });
+    } else {
+      fadeEls.forEach(function(el) { el.classList.add('is-visible'); });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About Combined",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Column — Who We Are"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "WHO WE ARE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A manufacturer built on precision and long-term partnerships"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Right Column — Dropdown Card"
+    },
+    {
+      "type": "text",
+      "id": "card_heading",
+      "label": "Card heading (eyebrow)",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent colour (eyebrow, chevrons)",
+      "default": "#e8ab3f"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "dropdown_item",
+      "name": "Dropdown Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Our Story"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "About Combined",
+      "settings": {
+        "eyebrow": "WHO WE ARE",
+        "heading": "A manufacturer built on precision and long-term partnerships",
+        "card_heading": "ABOUT US"
+      },
+      "blocks": [
+        {
+          "type": "dropdown_item",
+          "settings": {
+            "title": "Our Story",
+            "content": "<p>Plastic MGB Ltd was established in 2011 and based in Guangdong, China. The parent company of Plastic MGB is a major wheel & castor manufacturer that caters to diverse industries and applications.</p>"
+          }
+        },
+        {
+          "type": "dropdown_item",
+          "settings": {
+            "title": "Our Products",
+            "content": "<p>Over the years, we have won over many customers from the waste container industry with our high quality products, on-time delivery and competitive pricing. We offer a full range from one supplier — castors, axles, locks, and hardware.</p>"
+          }
+        },
+        {
+          "type": "dropdown_item",
+          "settings": {
+            "title": "Our Commitment",
+            "content": "<p>As an extension of our one-stop service, we have expanded our product range to include key accessories such as axles, castors, locks, screws/nuts and other customised products — all built to perform throughout their service life.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

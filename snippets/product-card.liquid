@@ -1,0 +1,523 @@
+{%- comment -%}
+  product-card.liquid — Premium B2B product card
+  Expects `product` variable. Used in products-grid, main-collection, related products.
+  Styles are inlined to guarantee loading regardless of theme asset pipeline.
+{%- endcomment -%}
+
+{%- comment -%} ── Render styles once per page ── {%- endcomment -%}
+{%- unless pc_styles_loaded -%}
+  {%- assign pc_styles_loaded = true -%}
+<style>
+  /* ─────────────────────────────────────
+     Product Card — Plastic MGB B2B
+     ───────────────────────────────────── */
+
+  /* ── Grid overrides ── */
+  .p-wrapper {
+    grid-template-columns: 1fr !important;
+    grid-column-gap: 28px !important;
+    grid-row-gap: 28px !important;
+    padding: 8px !important;
+  }
+  @media screen and (min-width: 768px) {
+    .p-wrapper { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media screen and (min-width: 1024px) {
+    .p-wrapper { grid-template-columns: repeat(4, 1fr) !important; }
+  }
+
+  /* ── Card container ── */
+  article.pc-card {
+    display: flex !important;
+    flex-direction: column !important;
+    background: #FFFFFF !important;
+    border: 1px solid #E5E7EB !important;
+    border-radius: 16px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04) !important;
+    padding: 20px 20px 24px !important;
+    height: 100% !important;
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94),
+                box-shadow 0.35s cubic-bezier(0.25,0.46,0.45,0.94) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+  article.pc-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 16px 36px rgba(18,59,122,0.14), 0 6px 14px rgba(0,0,0,0.05) !important;
+  }
+
+  /* ── Image area ── */
+  .pc-card__image-wrap {
+    background: #F7F8FA !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    margin-bottom: 20px !important;
+    aspect-ratio: 1 / 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 24px !important;
+    text-decoration: none !important;
+    border: none !important;
+    position: relative !important;
+  }
+  .pc-card__image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94) !important;
+    display: block !important;
+    mix-blend-mode: multiply !important;
+  }
+  article.pc-card:hover .pc-card__image {
+    transform: scale(1.03) !important;
+  }
+  /* Placeholder SVG fallback */
+  .pc-card__image-wrap .placeholder-svg,
+  .pc-card__image-wrap svg:not(.pc-card__btn-icon) {
+    width: 50% !important;
+    height: auto !important;
+    opacity: 0.2 !important;
+  }
+
+  /* ── Card body ── */
+  .pc-card__body {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    padding-top: 4px !important;
+  }
+
+  /* ── Category label ── */
+  .pc-card__category {
+    font-family: 'Exo', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: #1E3A8A !important;
+    margin: 0 0 8px !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+  }
+
+  /* ── Title ── */
+  h3.pc-card__title {
+    font-family: 'Exo', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    color: #111827 !important;
+    margin: 0 0 14px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden !important;
+    padding: 0 !important;
+    text-align: left !important;
+    letter-spacing: -0.01em !important;
+  }
+  h3.pc-card__title a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  h3.pc-card__title a:hover {
+    color: #123B7A !important;
+  }
+
+  /* ── Spec separator ── */
+  hr.pc-card__separator {
+    border: none !important;
+    border-top: 1px solid #E5E7EB !important;
+    margin: 0 0 12px !important;
+    padding: 0 !important;
+  }
+
+  /* ── Specs line ── */
+  .pc-card__specs {
+    font-family: 'Exo', sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    color: #6B7280 !important;
+    margin: 0 0 16px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden !important;
+    padding: 0 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  /* ── Availability ── */
+  .pc-card__availability {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    font-family: 'Exo', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    margin: 0 0 6px !important;
+    padding: 0 !important;
+  }
+  .pc-card__availability-dot {
+    width: 8px !important;
+    height: 8px !important;
+    min-width: 8px !important;
+    min-height: 8px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    display: inline-block !important;
+  }
+
+
+  /* ── Price ── */
+  .pc-card__price-wrap {
+    margin: 0 0 22px !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+  }
+  .pc-card__price {
+    font-family: 'Exo', sans-serif !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+  }
+  .pc-card__price-suffix {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #9CA3AF !important;
+    margin-left: 3px !important;
+    letter-spacing: 0 !important;
+  }
+  /* ── CTA buttons ── */
+  .pc-card__actions {
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    margin-top: auto !important;
+    padding: 0 !important;
+  }
+  .pc-card__btn {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+    min-width: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    min-height: 44px !important;
+    height: auto !important;
+    border-radius: 10px !important;
+    font-family: 'Exo', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    line-height: 1.2 !important;
+    padding: 6px 8px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    word-break: break-word !important;
+    hyphens: auto !important;
+    box-sizing: border-box !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease,
+                color 0.2s ease, transform 0.12s ease,
+                box-shadow 0.2s ease !important;
+    letter-spacing: 0em !important;
+  }
+  .pc-card__btn:focus-visible {
+    outline: 2px solid #0F4BA8 !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Primary — filled navy */
+  .pc-card__btn--primary {
+    background-color: #123B7A !important;
+    color: #fff !important;
+    border: 2px solid #123B7A !important;
+    box-shadow: 0 1px 3px rgba(18,59,122,0.2) !important;
+  }
+  .pc-card__btn--primary:hover {
+    background-color: #0F4BA8 !important;
+    border-color: #0F4BA8 !important;
+    color: #fff !important;
+    box-shadow: 0 3px 8px rgba(15,75,168,0.3) !important;
+  }
+  .pc-card__btn--primary:active {
+    transform: scale(0.97) !important;
+    box-shadow: 0 1px 2px rgba(18,59,122,0.15) !important;
+  }
+
+  /* SVG icon inside button */
+  .pc-card__btn-icon {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 2 !important;
+    flex-shrink: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+  }
+
+  /* Secondary — outlined */
+  .pc-card__btn--secondary {
+    background-color: #FFFFFF !important;
+    color: #123B7A !important;
+    border: 2px solid #123B7A !important;
+  }
+  .pc-card__btn--secondary:hover {
+    background-color: #123B7A !important;
+    color: #fff !important;
+    box-shadow: 0 3px 8px rgba(18,59,122,0.2) !important;
+  }
+  .pc-card__btn--secondary:active {
+    transform: scale(0.97) !important;
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    article.pc-card, .pc-card__image, .pc-card__btn { transition: none !important; }
+    article.pc-card:hover { transform: none !important; }
+    article.pc-card:hover .pc-card__image { transform: none !important; }
+  }
+
+  /* ── Mobile ── */
+  @media screen and (max-width: 767px) {
+    article.pc-card { padding: 16px 16px 20px !important; }
+    .pc-card__image-wrap { padding: 16px !important; margin-bottom: 16px !important; }
+    h3.pc-card__title { font-size: 18px !important; }
+    .pc-card__price { font-size: 24px !important; }
+    .pc-card__actions { gap: 8px !important; }
+    .pc-card__btn { font-size: 13px !important; height: 44px !important; padding: 0 12px !important; }
+  }
+
+  /* ── Tablet ── */
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    .pc-card__btn { font-size: 13px !important; padding: 0 10px !important; }
+  }
+</style>
+{%- endunless -%}
+
+{%- comment -%} ── Category label: product type → first collection title (skip generic names) ── {%- endcomment -%}
+{%- assign pc_category = '' -%}
+{%- if product.type != blank -%}
+  {%- assign pc_type_lower = product.type | downcase -%}
+  {%- unless pc_type_lower == 'home page' or pc_type_lower == 'homepage'
+      or pc_type_lower == 'frontpage' or pc_type_lower == 'all'
+      or pc_type_lower == 'all products' -%}
+    {%- assign pc_category = product.type -%}
+  {%- endunless -%}
+{%- endif -%}
+
+{%- if pc_category == blank and product.collections.size > 0 -%}
+  {%- for col in product.collections -%}
+    {%- assign col_lower = col.title | downcase -%}
+    {%- unless col_lower == 'home page' or col_lower == 'homepage'
+        or col_lower == 'frontpage' or col_lower == 'all'
+        or col_lower == 'all products' -%}
+      {%- assign pc_category = col.title -%}
+      {%- break -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- comment -%} ── Specifications line: metafields → tags → variant options ── {%- endcomment -%}
+{%- assign spec_parts = '' -%}
+
+{%- if product.metafields.custom.diameter != blank -%}
+  {%- assign spec_parts = spec_parts | append: product.metafields.custom.diameter | append: ' • ' -%}
+{%- endif -%}
+
+{%- if product.metafields.custom.motion_type != blank -%}
+  {%- assign spec_parts = spec_parts | append: product.metafields.custom.motion_type | append: ' • ' -%}
+{%- endif -%}
+
+{%- if product.metafields.custom.hub_material != blank -%}
+  {%- assign spec_parts = spec_parts | append: product.metafields.custom.hub_material | append: ' • ' -%}
+{%- endif -%}
+
+{%- if product.metafields.custom.compliance != blank -%}
+  {%- assign spec_parts = spec_parts | append: product.metafields.custom.compliance | append: ' • ' -%}
+{%- endif -%}
+
+{%- comment -%} If no metafields, fall back to product tags (max 4, skip internal tags) {%- endcomment -%}
+{%- if spec_parts == '' and product.tags.size > 0 -%}
+  {%- assign tag_count = 0 -%}
+  {%- for tag in product.tags -%}
+    {%- assign tag_lower = tag | downcase -%}
+    {%- unless tag_lower contains '__' or tag_lower contains 'hidden' -%}
+      {%- if tag_count < 4 -%}
+        {%- assign spec_parts = spec_parts | append: tag | append: ' • ' -%}
+        {%- assign tag_count = tag_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endif -%}
+
+
+
+{%- comment -%} ── First available variant for Add to Quote ── {%- endcomment -%}
+{%- assign first_variant = product.selected_or_first_available_variant -%}
+
+<article class="pc-card" data-product-id="{{ product.id }}">
+  {%- comment -%} ── Image ── {%- endcomment -%}
+  <a href="{{ product.url }}" class="pc-card__image-wrap" aria-label="{{ 'products.product.view_specifications' | t }} {{ product.title | escape }}">
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        srcset="
+          {{ product.featured_image | image_url: width: 300 }} 300w,
+          {{ product.featured_image | image_url: width: 450 }} 450w,
+          {{ product.featured_image | image_url: width: 600 }} 600w,
+          {{ product.featured_image | image_url: width: 800 }} 800w
+        "
+        sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 23vw"
+        loading="lazy"
+        width="{{ product.featured_image.width }}"
+        height="{{ product.featured_image.height }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        class="pc-card__image"
+      >
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </a>
+
+  {%- comment -%} ── Card body ── {%- endcomment -%}
+  <div class="pc-card__body">
+    {%- comment -%} Category {%- endcomment -%}
+    {%- if pc_category != blank -%}
+      <p class="pc-card__category">{{ pc_category }}</p>
+    {%- endif -%}
+
+    {%- comment -%} Title {%- endcomment -%}
+    <h3 class="pc-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    {%- comment -%} Specs {%- endcomment -%}
+    {%- if spec_line != blank -%}
+      <hr class="pc-card__separator">
+      <p class="pc-card__specs">{{ spec_line }}</p>
+    {%- endif -%}
+
+    {%- comment -%} Availability {%- endcomment -%}
+    <div class="pc-card__availability {{ avail_class }}">
+      <span class="pc-card__availability-dot" aria-hidden="true"></span>
+      {{ avail_label }}
+    </div>
+
+
+    {%- comment -%} CTA buttons {%- endcomment -%}
+    <div class="pc-card__actions">
+      {%- if product.available and pc_has_price -%}
+        <button
+          type="button"
+          class="pc-card__btn pc-card__btn--primary"
+          data-pc-add-to-quote
+          data-variant-id="{{ first_variant.id }}"
+          aria-label="{{ 'products.product.add_to_quote' | t }} {{ product.title | escape }}"
+        >
+          <svg class="pc-card__btn-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="12" y1="18" x2="12" y2="12" />
+            <line x1="9" y1="15" x2="15" y2="15" />
+          </svg>
+          {{ 'products.product.add_to_quote' | t }}
+        </button>
+      {%- else -%}
+        <a
+          href="{{ product.url }}"
+          class="pc-card__btn pc-card__btn--primary"
+          aria-label="{{ 'products.product.request_quote' | t }} {{ product.title | escape }}"
+        >
+          <svg class="pc-card__btn-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="12" y1="18" x2="12" y2="12" />
+            <line x1="9" y1="15" x2="15" y2="15" />
+          </svg>
+          {{ 'products.product.request_quote' | t }}
+        </a>
+      {%- endif -%}
+
+      <a
+        href="{{ product.url }}"
+        class="pc-card__btn pc-card__btn--secondary"
+        aria-label="{{ 'products.product.view_specs' | t }} {{ product.title | escape }}"
+      >
+        {{ 'products.product.view_specs' | t }}
+      </a>
+    </div>
+  </div>
+</article>
+
+<script>
+  /* Lightweight AJAX Add-to-Quote (cart) — runs once per page */
+  (function () {
+    if (window.__pcQuoteInit) return;
+    window.__pcQuoteInit = true;
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-pc-add-to-quote]');
+      if (!btn) return;
+
+      var variantId = btn.getAttribute('data-variant-id');
+      if (!variantId) return;
+
+      var originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<span style="opacity:.7">Adding…</span>';
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: parseInt(variantId, 10), quantity: 1 }),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Failed');
+          return res.json();
+        })
+        .then(function () {
+          btn.innerHTML = '<span>✓ Added</span>';
+          /* Update header cart badge if CartAPI exists */
+          if (window.CartAPI && typeof CartAPI.get === 'function') {
+            CartAPI.get().then(function (cart) {
+              CartAPI.updateBadge(cart.item_count);
+            });
+          } else {
+            /* Fallback badge update */
+            fetch('/cart.js')
+              .then(function (r) { return r.json(); })
+              .then(function (cart) {
+                var badge = document.getElementById('cart-count-badge');
+                if (badge) {
+                  badge.textContent = cart.item_count;
+                  badge.style.display = cart.item_count > 0 ? 'flex' : 'none';
+                }
+              });
+          }
+          setTimeout(function () {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+          }, 1800);
+        })
+        .catch(function () {
+          btn.innerHTML = '<span style="color:#fca5a5">Error</span>';
+          setTimeout(function () {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+          }, 2000);
+        });
+    });
+  })();
+</script>

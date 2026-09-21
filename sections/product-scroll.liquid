@@ -1,0 +1,250 @@
+<style>
+  .infinite-scroll {
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    background-color: var(--radiant-ui-components-library-marketplace--color--pmgb-yellow) !important;
+  }
+  
+  .infinite-scroll .product-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    width: max-content !important;
+    will-change: transform;
+  }
+  
+  .infinite-scroll .product-wrapper:hover {
+    animation-play-state: paused !important;
+  }
+
+  .infinite-scroll .scroll-card {
+    flex-shrink: 0 !important;
+    width: calc(25vw - 16px) !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    margin-right: 16px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
+  }
+
+  .infinite-scroll .scroll-card:hover {
+    transform: translateY(-4px) !important;
+    opacity: 0.9 !important;
+  }
+
+  /* Mobile: Show exactly 2 cards at a time */
+  @media screen and (max-width: 767px) {
+    .infinite-scroll .scroll-card {
+      width: calc(50vw - 16px) !important;
+    }
+  }
+</style>
+
+{%- assign name_heavy_duty = all_products['heavy-duty-castor'].title -%}
+{%- if name_heavy_duty == blank -%}
+  {%- assign name_heavy_duty = 'products.names.heavy_duty_castor' | t -%}
+{%- endif -%}
+
+{%- assign name_plastic_hub = all_products['plastic-hub-castor-wheel'].title | default: all_products['plastic-hub-castor'].title -%}
+{%- if name_plastic_hub == blank -%}
+  {%- assign name_plastic_hub = 'products.names.plastic_hub_castor' | t -%}
+{%- endif -%}
+
+{%- assign name_metal_hub = all_products['castor-wheel-with-metal-hub'].title | default: all_products['metal-hub-castor'].title -%}
+{%- if name_metal_hub == blank -%}
+  {%- assign name_metal_hub = 'products.names.metal_hub_castor' | t -%}
+{%- endif -%}
+
+{%- assign name_rubber_wheel = all_products['rubber-wheel'].title -%}
+{%- if name_rubber_wheel == blank -%}
+  {%- assign name_rubber_wheel = 'products.names.rubber_wheel' | t -%}
+{%- endif -%}
+
+{%- assign name_locks = all_products['locks'].title | default: all_products['lock'].title -%}
+{%- if name_locks == blank -%}
+  {%- assign name_locks = 'products.names.lock' | t -%}
+{%- endif -%}
+
+{%- assign name_screw = all_products['screw-bolt-and-nut'].title | default: all_products['screw'].title -%}
+{%- if name_screw == blank -%}
+  {%- assign name_screw = 'products.names.screw_bolt_nut' | t -%}
+{%- endif -%}
+
+{%- assign name_axle = all_products['steel-axle'].title | default: all_products['axle'].title -%}
+{%- if name_axle == blank -%}
+  {%- assign name_axle = 'products.names.steel_axle' | t -%}
+{%- endif -%}
+
+{%- assign name_pedal = all_products['foot-pedal'].title | default: all_products['pedal'].title -%}
+{%- if name_pedal == blank -%}
+  {%- assign name_pedal = 'products.names.foot_pedal' | t -%}
+{%- endif -%}
+
+<section class="infinite-scroll">
+  <div class="product-wrapper" id="product-marquee-{{ section.id }}">
+    {%- comment -%} ── Set 1: All 8 products linked directly to their stationary product pages ── {%- endcomment -%}
+    <a href="{{ all_products['heavy-duty-castor'].url | default: '/products/heavy-duty-castor' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+      <div class="product-card-wrapper">
+        <img src="{{ 'Heavy-Duty.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_heavy_duty | escape }}" srcset="{{ 'Heavy-Duty-p-500.png' | asset_url }} 500w, {{ 'Heavy-Duty-p-800.png' | asset_url }} 800w, {{ 'Heavy-Duty.png' | asset_url }} 1500w" class="product-infographic">
+        <div class="product-infographic-text">{{ name_heavy_duty }}</div>
+      </div>
+    </a>
+    <a href="{{ all_products['plastic-hub-castor-wheel'].url | default: all_products['plastic-hub-castor'].url | default: '/products/plastic-hub-castor-wheel' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+      <div class="product-card-wrapper">
+        <img src="{{ 'Plastic-Hub-Caster.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_plastic_hub | escape }}" srcset="{{ 'Plastic-Hub-Caster-p-500.png' | asset_url }} 500w, {{ 'Plastic-Hub-Caster-p-800.png' | asset_url }} 800w, {{ 'Plastic-Hub-Caster.png' | asset_url }} 1500w" class="product-infographic">
+        <div class="product-infographic-text">{{ name_plastic_hub }}</div>
+      </div>
+    </a>
+    <a href="{{ all_products['castor-wheel-with-metal-hub'].url | default: all_products['metal-hub-castor'].url | default: '/products/castor-wheel-with-metal-hub' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+      <div class="product-card-wrapper">
+        <img src="{{ 'Metal-Hub-Caster.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_metal_hub | escape }}" srcset="{{ 'Metal-Hub-Caster-p-500.png' | asset_url }} 500w, {{ 'Metal-Hub-Caster-p-800.png' | asset_url }} 800w, {{ 'Metal-Hub-Caster.png' | asset_url }} 1500w" class="product-infographic">
+        <div class="product-infographic-text">{{ name_metal_hub }}</div>
+      </div>
+    </a>
+    <a href="{{ all_products['rubber-wheel'].url | default: '/products/rubber-wheel' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+      <div class="product-card-wrapper">
+        <img src="{{ 'Rubber-Wheel.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_rubber_wheel | escape }}" srcset="{{ 'Rubber-Wheel-p-500.png' | asset_url }} 500w, {{ 'Rubber-Wheel-p-800.png' | asset_url }} 800w, {{ 'Rubber-Wheel-p-1080.png' | asset_url }} 1080w, {{ 'Rubber-Wheel.png' | asset_url }} 1500w" class="product-infographic">
+        <div class="product-infographic-text">{{ name_rubber_wheel }}</div>
+      </div>
+    </a>
+    <a href="{{ all_products['locks'].url | default: all_products['lock'].url | default: '/products/locks' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+      <div class="product-card-wrapper">
+        <img src="{{ 'Locks.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_locks | escape }}" srcset="{{ 'Locks-p-500.png' | asset_url }} 500w, {{ 'Locks-p-800.png' | asset_url }} 800w, {{ 'Locks-p-1080.png' | asset_url }} 1080w, {{ 'Locks.png' | asset_url }} 1500w" class="product-infographic">
+        <div class="product-infographic-text">{{ name_locks }}</div>
+      </div>
+    </a>
+    <a href="{{ all_products['screw-bolt-and-nut'].url | default: all_products['screw'].url | default: '/products/screw-bolt-and-nut' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+      <div class="product-card-wrapper">
+        <img src="{{ 'Screw.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_screw | escape }}" srcset="{{ 'Screw-p-500.png' | asset_url }} 500w, {{ 'Screw-p-800.png' | asset_url }} 800w, {{ 'Screw-p-1080.png' | asset_url }} 1080w, {{ 'Screw.png' | asset_url }} 1500w" class="product-infographic">
+        <div class="product-infographic-text">{{ name_screw }}</div>
+      </div>
+    </a>
+    <a href="{{ all_products['steel-axle'].url | default: all_products['axle'].url | default: '/products/steel-axle' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+      <div class="product-card-wrapper">
+        <img src="{{ 'Axle.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_axle | escape }}" srcset="{{ 'Axle-p-500.png' | asset_url }} 500w, {{ 'Axle-p-800.png' | asset_url }} 800w, {{ 'Axle-p-1080.png' | asset_url }} 1080w, {{ 'Axle.png' | asset_url }} 1500w" class="product-infographic">
+        <div class="product-infographic-text">{{ name_axle }}</div>
+      </div>
+    </a>
+    <a href="{{ all_products['foot-pedal'].url | default: all_products['pedal'].url | default: '/products/foot-pedal' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+      <div class="product-card-wrapper">
+        <img src="{{ 'Foot-Pedal.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_pedal | escape }}" srcset="{{ 'Foot-Pedal-p-500.png' | asset_url }} 500w, {{ 'Foot-Pedal-p-800.png' | asset_url }} 800w, {{ 'Foot-Pedal.png' | asset_url }} 1500w" class="product-infographic">
+        <div class="product-infographic-text">{{ name_pedal }}</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var wrapper = document.getElementById('product-marquee-{{ section.id }}');
+    if (!wrapper) return;
+
+    /* Clone all original cards to create the duplicate set */
+    var originals = wrapper.querySelectorAll('[data-marquee-set="1"]');
+    originals.forEach(function(card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('data-marquee-set', '2');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      /* Clear alt text on cloned images to avoid duplicate screen reader content */
+      var imgs = clone.querySelectorAll('img');
+      imgs.forEach(function(img) { img.alt = ''; });
+      wrapper.appendChild(clone);
+    });
+
+    function initMarquee() {
+      /* Measure the width of the original set (first cards + their margins) */
+      var setWidth = 0;
+      originals.forEach(function(card) {
+        var style = window.getComputedStyle(card);
+        setWidth += card.offsetWidth + parseFloat(style.marginRight) + parseFloat(style.marginLeft);
+      });
+
+      /* Inject a dynamic keyframe animation with the exact pixel offset */
+      var styleTag = document.getElementById('marquee-style-{{ section.id }}');
+      if (styleTag) styleTag.remove();
+
+      styleTag = document.createElement('style');
+      styleTag.id = 'marquee-style-{{ section.id }}';
+      styleTag.textContent =
+        '@keyframes marquee-scroll-{{ section.id }} {' +
+        '  0% { transform: translate3d(0, 0, 0); }' +
+        '  100% { transform: translate3d(-' + setWidth + 'px, 0, 0); }' +
+        '}';
+      document.head.appendChild(styleTag);
+
+      /* Speed: ~60px per second → total duration adapts to content width */
+      var speed = 60;
+      var duration = setWidth / speed;
+      wrapper.style.animation = 'marquee-scroll-{{ section.id }} ' + duration + 's linear infinite';
+    }
+
+    /* Wait for all images to load before measuring */
+    var images = wrapper.querySelectorAll('img');
+    var loaded = 0;
+    var total = images.length;
+
+    function onImageReady() {
+      loaded++;
+      if (loaded >= total) initMarquee();
+    }
+
+    images.forEach(function(img) {
+      if (img.complete) {
+        onImageReady();
+      } else {
+        img.addEventListener('load', onImageReady);
+        img.addEventListener('error', onImageReady);
+      }
+    });
+
+    /* Fallback: if images somehow never fire events */
+    setTimeout(initMarquee, 3000);
+
+    /* Recalculate on resize */
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(initMarquee, 200);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product Scroll",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "scroll_card",
+      "name": "Scroll Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Card Link"
+        },
+        {
+          "type": "text",
+          "id": "asset_image_filename",
+          "label": "Image Filename"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Scroll"
+    }
+  ]
+}
+{% endschema %}

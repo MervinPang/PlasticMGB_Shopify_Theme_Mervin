@@ -1,0 +1,178 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "general": {
+    "page_not_found": "Page Not Found",
+    "page_not_found_message": "The page you are looking for does not exist or has been moved.",
+    "back_to_home": "Back to Homepage",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "accessibility": {
+    "hero_carousel": "Hero Carousel",
+    "previous_slide": "Previous slide",
+    "next_slide": "Next slide",
+    "go_to_slide": "Go to slide {{ number }}",
+    "close_description": "Close description"
+  },
+  "contact": {
+    "form": {
+      "heading": "Request A Quote",
+      "company_name": "Company Name *",
+      "placeholder_company": "Enter your company name",
+      "name": "Name *",
+      "placeholder_name": "Enter your name",
+      "email": "Email *",
+      "placeholder_email": "Enter your email address",
+      "telephone": "Telephone *",
+      "placeholder_telephone": "Enter your telephone number",
+      "message": "Message *",
+      "placeholder_message": "Tell us about your project requirements...",
+      "please_wait": "Please wait...",
+      "submit": "Submit",
+      "success": "Thank you! Your submission has been received!",
+      "error": "Oops! Something went wrong while submitting the form.",
+      "description_html": "Your enquiry is important to us. Please enter your message below and we will be in touch with you within 3 working days. Alternatively, you can email us: <a href=\"mailto:sales@plasticmgb.com\">sales@plasticmgb.com</a>"
+    }
+  },
+  "header": {
+    "about_us": "About Us",
+    "products": "Products",
+    "why_choose_us": "Why Choose Us",
+    "contact_us": "Contact Us",
+    "e_catalogue": "E-Catalogue",
+    "quote_list": "Quote List"
+  },
+  "cart": {
+    "general": {
+      "remove": "Remove"
+    },
+    "rfq": {
+      "title": "Quote List",
+      "empty_message": "Your quote list is empty.",
+      "browse_products": "Browse Products",
+      "table_product": "Product",
+      "table_quantity": "Quantity",
+      "table_remove": "Remove",
+      "form_title": "Submit Quote Request",
+      "form_subtitle": "Provide your business details and requirements below. We will send a customized B2B quotation within 24 hours.",
+      "company_name": "Company Name *",
+      "contact_person": "Contact Person *",
+      "business_email": "Business Email *",
+      "business_telephone": "Business Telephone *",
+      "additional_requirements": "Additional Requirements / Custom Specifications",
+      "submit": "Submit Quote Request",
+      "success_title": "Request Submitted",
+      "success_message": "Thank you for your request. Our B2B sales team will get back to you with a formal quote shortly.",
+      "return_to_homepage": "Return to Homepage"
+    }
+  },
+  "products": {
+    "names": {
+      "heavy_duty_Castor": "Heavy Duty Castor",
+      "plastic_hub_Castor": "Plastic Hub Castor",
+      "metal_hub_Castor": "Metal Hub Castor",
+      "rubber_wheel": "Rubber Wheel",
+      "lock": "Locks",
+      "screw_bolt_nut": "Screw, Bolt & Nut",
+      "steel_axle": "Steel Axle",
+      "foot_pedal": "Foot Pedal"
+    },
+    "product": {
+      "product_description": "Product Description",
+      "read_product_description": "Read Product Description",
+      "quantity": "Quantity",
+      "add_to_quote_list": "Add to Quote List",
+      "temporarily_unavailable": "Temporarily Unavailable",
+      "added_to_quote": "Added to Quote List",
+      "request_direct_quote": "Request Direct Quote",
+      "b2b_bullet_certified": "EN840/RAL 951 & SKZ Certified Components",
+      "b2b_bullet_shipping": "Worldwide Container Shipping & Bulk Freight",
+      "b2b_bullet_oem": "Custom OEM Specifications Available",
+      "technical_specifications": "Technical Specifications",
+      "no_products_found": "No products found in this section.",
+      "in_stock": "In Stock",
+      "made_to_order": "Made to Order",
+      "out_of_stock": "Out of Stock",
+      "view_specifications": "View specifications for",
+      "price_suffix": "/ pc",
+      "request_quote": "Request Quote",
+      "add_to_quote": "Add to Quote",
+      "view_specs": "View Specs"
+    }
+  },
+  "sections": {
+    "about_hero": {
+      "eyebrow": "ABOUT US",
+      "heading": "Over 15+ years supplying the global MGB industry",
+      "description": "Plastic MGB Ltd was established in 2011 and is based in Guangdong, China. Our parent company is a major manufacturer of wheels and Castors, serving a wide range of industries and applications. Over the years, we have earned the trust of customers in the waste container industry through our commitment to high-quality products, reliable delivery, and competitive pricing. As part of our one-stop service, we have expanded our product range to include key waste container accessories such as axles, Castors, locks, screws, nuts, and other customised products."},
+    "credentials": {
+      "eyebrow": "OUR CREDENTIALS",
+      "heading": "Quality and Compliance You Can Rely On",
+      "description": "Every product in our range is manufactured to meet the compliance requirements of global OEM procurement teams. Certification documentation is available to verified buyers upon request.",
+      "request_documentation": "Request Documentation →"
+    },
+    "cta": {
+      "heading": "Have A Project In Mind? Let's Connect",
+      "button_text": "Contact Us Today",
+      "project_offers": "FOR PROJECT OFFERS",
+      "call_us": "CALL US ANYTIME"
+    },
+    "hero": {
+      "eyebrow": "OEM MANUFACTURER",
+      "heading": "Heavy-Duty MGB Components Engineered for Global OEM Manufacturers",
+      "description": "We manufacture high-capacity castors, steel axles, and container accessories to EN840/RAL 951 standards. Delivering direct factory supply and custom tooling for high-volume waste container producers.",
+      "request_quote": "Request a Quote",
+      "view_components": "View Components",
+      "trust_badge": "Trusted supplier to leading mobile waste bin manufacturers worldwide.",
+      "view_product": "View Product",
+      "products": {
+        "Castor_desc": "EN840/RAL 951 Certified. Fixed/Swivel castor, fork and plate made of heavy pressed steel that is reinforced and zinc plated. Wheel centre made of polypropylene. heavy duty, precision ball bearing.",
+        "axle_desc": "High-tensile galvanized steel axles engineered for high load capacity and corrosion resistance.",
+        "pedal_desc": "Ergonomic lid-lifting pedal systems designed for hands-free, hygienic waste collection.",
+        "lock_desc": "High-grade bin locks, directional castor locks, brass locks, and custom utility enclosure assemblies."
+      },
+      "specs": {
+        "en840_certified": "EN840/RAL 951 Certified",
+        "Castor_sizes": "Polypropylene Core",
+        "swivel_fixed": "Swivel & Fixed",
+        "zinc_plated_fork": "Zinc-Plated Fork and Plate",
+        "high_tensile_steel": "High-Tensile Steel",
+        "galvanized_finish": "Galvanized Finish",
+        "solid_hollow": "Solid & Hollow",
+        "closedandopen": "Closed/Opened ends for Hollow Axles",
+        "customlength": "Customisable Length",
+        "en840_compliant": "EN840/RAL 951 Compliant",
+        "ergonomic_lift": "Ergonomic Lift",
+        "uv_polymeric_body": "Heavy-Duty Frame",
+        "fits_120l_1100l": "Fits 660L–1100L (4-Wheel)",
+        "direct_oem_fit": "Direct OEM Fit",
+        "gravity_latch": "Bin & Castor Locks",
+        "key": "Keys for Locks",
+        "durable": "Durable",
+        "reliable": "Reliable"
+      }
+    },
+    "procurement": {
+      "certifications_note": "Complete certification packages, test reports, and factory inspection documents available.",
+      "request_credentials": "Request Credentials Package →"
+    },
+    "who_we_are": {
+      "eyebrow": "WHO WE ARE",
+      "heading": "A manufacturer built on precision and long-term partnerships",
+      "description_html": "Plastic MGB Co. Ltd was established in 2011 as a division of a larger wheel and castor manufacturing group based in Guangdong, China. From the outset, the business focused exclusively on accessories for mobile garbage bins — a specialist niche demanding exacting standards in load capacity, material durability and dimensional consistency.<br><br>Today we produce over 6 million castor wheels and 5 million steel axles annually, supplying OEM manufacturers across Europe, Asia Pacific, the Middle East and the Americas. MGB accessories are all we do — and that focus is what makes us the right partner for serious OEM buyers."
+    },
+    "why_hero": {
+      "eyebrow": "WHY CHOOSE US",
+      "heading": "Plastic MGB Made To Perform",
+      "description": "Accessories for Mobile Waste Container are the heart of our business. Our quality products are tough, resilient and made to perform throughout its life cycle. Our products are made to perform and excel in safety, enabling you to maximise productivity of your bin fleet and generate savings that are far more superior to other manufacturers, delivering high performance products that last."
+    }
+  }
+}

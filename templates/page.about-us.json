@@ -1,0 +1,277 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ *
+ * NOTE: This template merges the former "About Us" and
+ * "Why Choose Us" pages into a single combined page.
+ * Pre-merge backups: page.about-us-pre-merge.json,
+ * page.why-choose-us-pre-merge.json
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "about-combined": {
+      "type": "about-combined",
+      "blocks": {
+        "dd_story": {
+          "type": "dropdown_item",
+          "settings": {
+            "title": "Our Story",
+            "content": "<p>Established in 2011 and based in Guangdong, China, Plastic MGB is a specialist manufacturer of accessories for Mobile Waste Containers. The parent company is a major wheel \u0026 castor manufacturer that caters to diverse industries and applications.</p>"
+          }
+        },
+        "dd_products": {
+          "type": "dropdown_item",
+          "settings": {
+            "title": "Our Products",
+            "content": "<p>Over the years, we have won over many customers from the waste container industry with our high quality products, on-time delivery and competitive pricing. We offer a full range from one supplier — castors, axles, locks, and hardware.</p>"
+          }
+        },
+        "dd_commitment": {
+          "type": "dropdown_item",
+          "settings": {
+            "title": "Our Commitment",
+            "content": "<p>Quality, durability, and resilience are at the core of everything we produce. From castor wheels and steel axles to locks and custom hardware, our products are built to perform throughout their service life — delivering long-lasting solutions that stand up to everyday use.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "dd_story",
+        "dd_products",
+        "dd_commitment"
+      ],
+      "settings": {
+        "eyebrow": "WHO WE ARE",
+        "heading": "A manufacturer built on precision and long-term partnerships",
+        "card_heading": "ABOUT US",
+        "accent_color": "#e8ab3f"
+      }
+    },
+    "features_metrics_merged": {
+      "type": "features-metrics",
+      "blocks": {
+        "metric_t48XDg": {
+          "type": "metric",
+          "settings": {
+            "metric_prefix": "",
+            "metric_value": "EN840/RAL 951",
+            "metric_suffix": "Approved",
+            "metric_description": "by SKZ"
+          }
+        },
+        "metric_PtiMgN": {
+          "type": "metric",
+          "settings": {
+            "metric_prefix": "",
+            "metric_value": "5M+",
+            "metric_suffix": "",
+            "metric_description": "Steel axles produced annually"
+          }
+        },
+        "metric_WQbyCj": {
+          "type": "metric",
+          "settings": {
+            "metric_prefix": "",
+            "metric_value": "6M+",
+            "metric_suffix": "",
+            "metric_description": "Castor wheels produced annually"
+          }
+        },
+        "metric_xexaHg": {
+          "type": "metric",
+          "settings": {
+            "metric_prefix": "",
+            "metric_value": "Established 2011",
+            "metric_suffix": "",
+            "metric_description": "20 years in the industry"
+          }
+        }
+      },
+      "block_order": [
+        "metric_t48XDg",
+        "metric_PtiMgN",
+        "metric_WQbyCj",
+        "metric_xexaHg"
+      ],
+      "name": "Features \u0026 Metrics",
+      "settings": {
+        "heading": "By the Numbers",
+        "subheading": "Trusted by industry leaders worldwide",
+        "background_color": "#133F90",
+        "text_color": "#FFFFFF",
+        "accent_color": "#e8ab3f",
+        "vertical_padding": 32
+      }
+    },
+    "counter-stats": {
+      "type": "counter-stats",
+      "blocks": {
+        "stat_1": {
+          "type": "stat_with_number",
+          "settings": {
+            "label": "steel axles produced annually",
+            "number": "8",
+            "suffix": "M+"
+          }
+        },
+        "stat_2": {
+          "type": "stat_with_number",
+          "settings": {
+            "label": "castor wheels produced annually",
+            "number": "5",
+            "suffix": "M+"
+          }
+        },
+        "stat_3": {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "High quality, on-time delivery, competitive pricing"
+          }
+        },
+        "stat_4": {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "Full range from one supplier — castors, axles, locks, hardware"
+          }
+        },
+        "stat_5": {
+          "type": "stat_text_only",
+          "settings": {
+            "label": "Established 2011 — 15+ years in the industry"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4",
+        "stat_5"
+      ],
+      "settings": {}
+    },
+    "credentials": {
+      "type": "credentials",
+      "blocks": {
+        "primary": {
+          "type": "primary_card",
+          "settings": {
+            "eyebrow": "PRIMARY CERTIFICATION",
+            "title": "EN840/RAL 951 / SKZ certified",
+            "description": "EN840/RAL 951 is the European standard that regulates the design, performance, and testing of mobile waste receptacles. For OEM manufacturers supplying to the European market, EN840/RAL 951 compliance for castor wheels and axles is a mandatory procurement requirement — not optional. Our EN840/RAL 951 certification is granted and independently verified by the SKZ Institute, a leading plastics testing and certification organization in Europe"
+          }
+        },
+        "cred_1": {
+          "type": "credential_card",
+          "settings": {
+            "title": "REACH (EC) – 155 SVHC",
+            "description": "Declaration of conformity covering 155 substances of very high concern. All applicable materials meet REACH requirements for safe handling and use.",
+            "icon": "leaf"
+          }
+        },
+        "cred_2": {
+          "type": "credential_card",
+          "settings": {
+            "title": "RoHS",
+            "description": "Restriction of hazardous substances — Cadmium, Lead, Mercury and Hexavalent Chromium compliant across all applicable product lines.",
+            "icon": "checkmark"
+          }
+        },
+        "cred_3": {
+          "type": "credential_card",
+          "settings": {
+            "title": "Neutral Salt Spray Test",
+            "description": "Corrosion resistance testing on zinc-plated fork components and steel hardware. Confirms coating durability under sustained salt spray exposure.",
+            "icon": "droplet"
+          }
+        }
+      },
+      "block_order": [
+        "primary",
+        "cred_1",
+        "cred_2",
+        "cred_3"
+      ],
+      "settings": {}
+    },
+    "procurement": {
+      "type": "procurement",
+      "blocks": {
+        "proc_1": {
+          "type": "procurement_card",
+          "settings": {
+            "icon": "shield",
+            "title": "EN840/RAL 951 compliant",
+            "subtext": "Independently verified by SKZ Institute, the European standard for mobile waste container components.",
+            "bullet_1": "Covers castor wheels",
+            "bullet_2": "Independently verified by SKZ Institute"
+          }
+        },
+        "proc_2": {
+          "type": "procurement_card",
+          "settings": {
+            "icon": "chart",
+            "title": "High-volume capacity",
+            "subtext": "Dedicated production lines for MGB accessories — consistent output, predictable lead times.",
+            "bullet_1": "6M+ castor wheels / year",
+            "bullet_2": "5M+ steel axles / year"
+          }
+        },
+        "proc_3": {
+          "type": "procurement_card",
+          "settings": {
+            "icon": "pricing",
+            "title": "Competitive pricing",
+            "subtext": "Direct manufacturer pricing with no intermediaries — better rates for long-term OEM relationships.",
+            "bullet_1": "Direct factory pricing",
+            "bullet_2": "Global shipping"
+          }
+        },
+        "proc_4": {
+          "type": "procurement_card",
+          "settings": {
+            "icon": "cube",
+            "title": "OEM customisation",
+            "subtext": "Custom dimensions and Patented design innovation across our product range.",
+            "bullet_1": "Custom axle lengths available",
+            "bullet_2": "Engineered for OEM applications"
+          }
+        }
+      },
+      "block_order": [
+        "proc_1",
+        "proc_2",
+        "proc_3",
+        "proc_4"
+      ],
+      "settings": {
+        "eyebrow": "OUR CREDENTIALS",
+        "heading": "Why Procurement Teams Choose Us"
+      }
+    },
+    "scroll": {
+      "type": "product-scroll",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta",
+      "settings": {
+        "heading": "Have A Project In Mind? Let's Connect",
+        "button_text": "Contact Us Today"
+      }
+    }
+  },
+  "order": [
+    "about-combined",
+    "features_metrics_merged",
+    "counter-stats",
+    "credentials",
+    "procurement",
+    "scroll",
+    "cta"
+  ]
+}

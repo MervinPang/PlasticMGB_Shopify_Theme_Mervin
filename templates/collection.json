@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main-collection": {
+      "type": "main-collection",
+      "settings": {}
+    },
+    "cta": {
+      "type": "cta",
+      "settings": {}
+    }
+  },
+  "order": ["main-collection", "cta"]
+}
