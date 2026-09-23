@@ -374,6 +374,26 @@
     }
   }
 
+  /* Products only: keep the panel inside the available viewport. */
+  @media screen and (min-width: 992px) {
+    #products-dropdown-list {
+      left: var(--products-panel-left, -170px) !important;
+      width: var(--products-panel-width, 740px) !important;
+      min-width: 0 !important;
+      max-width: calc(100vw - 32px) !important;
+      margin-top: 0 !important;
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr) !important;
+      max-height: var(--products-panel-height, calc(100dvh - 140px)) !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      overscroll-behavior: contain;
+    }
+
+    #products-dropdown-list .pmgb-mega-menu__left-card {
+      min-width: 0;
+    }
+  }
+
   .hamburger-menu-white {
     cursor: pointer !important;
     pointer-events: auto !important;
@@ -813,6 +833,43 @@
       var list = document.getElementById('products-dropdown-list') || document.querySelector('.dropdown-list');
       if (!toggle || !list) return;
 
+      // Use measured viewport coordinates; the header's backdrop filter means
+      // a fixed-position child would still be positioned relative to the header.
+      function positionProductsPanel() {
+        if (!window.matchMedia('(min-width: 992px)').matches) return;
+        var viewport = window.visualViewport;
+        var viewportLeft = viewport ? viewport.offsetLeft : 0;
+        var viewportTop = viewport ? viewport.offsetTop : 0;
+        var viewportWidth = viewport ? viewport.width : document.documentElement.clientWidth;
+        var viewportHeight = viewport ? viewport.height : window.innerHeight;
+        var gutter = 16;
+        list.style.setProperty('--products-panel-width', Math.min(740, viewportWidth - gutter * 2) + 'px');
+        list.style.setProperty('--products-panel-left', '0px');
+        var rect = list.getBoundingClientRect();
+        var desiredLeft = rect.left - 170;
+        var safeLeft = Math.max(viewportLeft + gutter,
+          Math.min(desiredLeft, viewportLeft + viewportWidth - gutter - rect.width));
+        list.style.setProperty('--products-panel-left', (safeLeft - rect.left) + 'px');
+        list.style.setProperty('--products-panel-height',
+          Math.max(0, viewportTop + viewportHeight - gutter - rect.top) + 'px');
+      }
+
+      var positionFrame;
+      function scheduleProductsPosition() {
+        cancelAnimationFrame(positionFrame);
+        positionFrame = requestAnimationFrame(positionProductsPanel);
+      }
+      window.addEventListener('resize', scheduleProductsPosition);
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', scheduleProductsPosition);
+        window.visualViewport.addEventListener('scroll', scheduleProductsPosition);
+      }
+      if (window.ResizeObserver) {
+        var headerObserver = new ResizeObserver(scheduleProductsPosition);
+        headerObserver.observe(toggle.closest('.nav-bar'));
+      }
+      positionProductsPanel();
+
       toggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -827,6 +884,7 @@
           list.classList.add('w--open');
           toggle.classList.add('w--open');
           toggle.setAttribute('aria-expanded', 'true');
+          positionProductsPanel();
         }
       });
 
