@@ -207,6 +207,8 @@
       transform: translateX(3px);
     }
 
+  }
+
     /* Right Inner Sub-Card (Compact Live Product Preview) */
     .pmgb-mega-menu__preview {
       background: rgba(14, 20, 32, 0.6);
@@ -372,7 +374,6 @@
       border-color: rgba(255, 255, 255, 0.3);
       color: #ffc107;
     }
-  }
 
   /* Products only: keep the panel inside the available viewport. */
   @media screen and (min-width: 992px) {
@@ -406,9 +407,60 @@
       z-index: 9999999 !important;
     }
 
-    /* Hide preview card completely on mobile */
-    .pmgb-mega-menu__preview {
-      display: none !important;
+    /* Products preview expands directly after the selected mobile item. */
+    #products-dropdown-list .pmgb-mega-menu__preview {
+      display: flex !important;
+      width: 100%;
+      min-width: 0;
+      margin: 6px 0 10px;
+      padding: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    #products-dropdown-list .pmgb-mega-preview__top {
+      grid-template-columns: minmax(0, 1fr) 72px;
+      gap: 10px;
+    }
+
+    #products-dropdown-list .pmgb-mega-preview__img-box {
+      width: 72px;
+      height: 72px;
+      padding: 5px;
+    }
+
+    #products-dropdown-list .pmgb-mega-preview__badge {
+      max-width: 100%;
+      white-space: normal;
+    }
+
+    #products-dropdown-list .pmgb-mega-preview__title {
+      font-size: 1rem;
+    }
+
+    #products-dropdown-list .pmgb-mega-preview__desc {
+      display: block;
+      overflow: visible;
+      font-size: 0.875rem;
+      -webkit-line-clamp: unset;
+    }
+
+    #products-dropdown-list .pmgb-mega-preview__actions {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #products-dropdown-list .pmgb-mega-preview__actions a {
+      min-height: 44px;
+    }
+
+    #products-dropdown-list .pmgb-mega-preview__actions span {
+      font-size: 0.875rem !important;
+      white-space: normal;
+      text-align: center !important;
+    }
+
+    #products-dropdown-list .drop-nav-link.is-active {
+      background-color: rgba(255, 193, 7, 0.15) !important;
+      color: #ffc107 !important;
     }
 
     /* 1. Closed State: completely offscreen and hidden on ALL mobile screen sizes */
@@ -632,6 +684,108 @@
       min-height: 420px !important;
     }
   }
+
+  /* Mobile viewport fit: allow header and hero content to shrink naturally. */
+  @media screen and (max-width: 991px) {
+    .nav-wrapper {
+      left: 0;
+      right: 0;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .nav-wrapper .nav-bar {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      gap: 12px;
+      padding-left: 16px;
+      padding-right: 16px;
+      align-items: center;
+    }
+
+    .nav-wrapper .logo-bar {
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+
+    .nav-wrapper .logo-bar .image-3 {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .nav-wrapper .hamburger-menu-white {
+      flex: 0 0 50px;
+    }
+
+    .nav-wrapper .nav-buttons-wrapper.is-open {
+      width: calc(100vw - 32px) !important;
+      min-height: 0 !important;
+    }
+
+    [data-hero-slider-section] .cat-hero__track,
+    [data-hero-slider-section] .cat-hero__slide,
+    [data-hero-slider-section] .cat-hero__content-box,
+    [data-hero-slider-section] .cat-hero__left-content,
+    [data-hero-slider-section] .cat-hero__info-panel-wrap,
+    [data-hero-slider-section] .cat-info-slide__stage,
+    [data-hero-slider-section] .cat-info-slide__content {
+      min-width: 0;
+    }
+
+    [data-hero-slider-section] .cat-hero--fade .cat-hero__track,
+    [data-hero-slider-section] .cat-hero__content-box {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    [data-hero-slider-section] .cat-hero__left-content,
+    [data-hero-slider-section] .cat-hero__info-panel-wrap,
+    [data-hero-slider-section] .cat-hero__actions,
+    [data-hero-slider-section] .cat-hero__trust-badge {
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    [data-hero-slider-section] .cat-hero__headline,
+    [data-hero-slider-section] .cat-hero__subtext,
+    [data-hero-slider-section] .cat-hero__trust-badge,
+    [data-hero-slider-section] .cat-info-slide__content {
+      overflow-wrap: anywhere;
+    }
+
+    [data-hero-slider-section] .cat-hero__btn,
+    [data-hero-slider-section] .cat-spec-chip {
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    [data-hero-slider-section] .cat-info-slide {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    [data-hero-slider-section] .cat-hero__btn {
+      max-width: min(280px, 100%);
+    }
+
+    .procurement-section .procurement-header {
+      min-width: 0;
+      max-width: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+    }
+
+    [data-hero-slider-section] .cat-info-slide {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
 </style>
 
 <div class="nav-wrapper">
@@ -740,7 +894,7 @@
           </div>
 
           <!-- Right Inner Sub-Card Live Product Preview Box -->
-          <div class="pmgb-mega-menu__preview" aria-live="polite">
+          <div class="pmgb-mega-menu__preview" id="products-preview" aria-live="polite">
             <div>
               <div class="pmgb-mega-preview__badge" id="mega-preview-spec">EN840/RAL 951 COMPLIANT</div>
               <div class="pmgb-mega-preview__top">
@@ -909,6 +1063,28 @@
 
       if (!dropLinks.length || !previewImg) return;
 
+      var preview = document.getElementById('products-preview');
+      var list = document.getElementById('products-dropdown-list');
+      var mobilePreview = window.matchMedia('(max-width: 991px)');
+
+      function placePreview(link) {
+        if (!preview || !list) return;
+        if (mobilePreview.matches) {
+          link.insertAdjacentElement('afterend', preview);
+        } else if (preview.parentElement !== list) {
+          list.appendChild(preview);
+        }
+        dropLinks.forEach(function(item) {
+          if (mobilePreview.matches) {
+            item.setAttribute('aria-controls', 'products-preview');
+            item.setAttribute('aria-expanded', item === link ? 'true' : 'false');
+          } else {
+            item.removeAttribute('aria-controls');
+            item.removeAttribute('aria-expanded');
+          }
+        });
+      }
+
       function updatePreview(link) {
         dropLinks.forEach(function(l) { l.classList.remove('is-active'); });
         link.classList.add('is-active');
@@ -920,19 +1096,50 @@
         var url = link.getAttribute('data-url');
 
         if (img) previewImg.src = img;
-        if (title) previewTitle.textContent = title;
+        if (title) {
+          previewTitle.textContent = title;
+          previewImg.alt = title;
+        }
         if (desc) previewDesc.textContent = desc;
         if (spec) previewSpec.textContent = spec;
         if (url && previewCTA) previewCTA.href = url;
       }
 
       var initialActive = document.querySelector('.pmgb-mega-menu__left-card .drop-nav-link.is-active') || dropLinks[0];
-      if (initialActive) updatePreview(initialActive);
+      if (initialActive) {
+        updatePreview(initialActive);
+        placePreview(initialActive);
+      }
 
       dropLinks.forEach(function(link) {
-        link.addEventListener('mouseenter', function() { updatePreview(this); });
-        link.addEventListener('focus', function() { updatePreview(this); });
+        link.addEventListener('mouseenter', function() {
+          updatePreview(this);
+          placePreview(this);
+        });
+        link.addEventListener('focus', function() {
+          updatePreview(this);
+          placePreview(this);
+        });
+        link.addEventListener('click', function(event) {
+          if (!mobilePreview.matches || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          updatePreview(this);
+          placePreview(this);
+          // Keep the selected row and its details in the existing scrollable drawer.
+          var drawer = list.closest('.nav-buttons-wrapper');
+          if (drawer) {
+            drawer.scrollTop += this.getBoundingClientRect().top - drawer.getBoundingClientRect().top - 12;
+          }
+        });
       });
+
+      function syncPreviewLayout() {
+        var active = Array.prototype.find.call(dropLinks, function(link) {
+          return link.classList.contains('is-active');
+        }) || dropLinks[0];
+        placePreview(active);
+      }
+      mobilePreview.addEventListener('change', syncPreviewLayout);
     }
 
     if (document.readyState === 'loading') {
