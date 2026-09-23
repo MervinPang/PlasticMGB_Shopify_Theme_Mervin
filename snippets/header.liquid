@@ -1112,11 +1112,17 @@
       }
 
       dropLinks.forEach(function(link) {
-        link.addEventListener('mouseenter', function() {
+        // Touch browsers synthesize mouseenter before click. Moving the card
+        // during that event can put View Specs underneath the tapping finger.
+        link.addEventListener('pointerenter', function(event) {
+          if (event.pointerType !== 'mouse') return;
           updatePreview(this);
           placePreview(this);
         });
         link.addEventListener('focus', function() {
+          // Pointer focus must not move the row before its click completes.
+          // Keyboard focus still opens the preview for accessible navigation.
+          if (!this.matches(':focus-visible')) return;
           updatePreview(this);
           placePreview(this);
         });
