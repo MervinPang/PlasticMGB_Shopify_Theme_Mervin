@@ -68,7 +68,7 @@
   {%- assign name_locks = 'products.names.lock' | t -%}
 {%- endif -%}
 
-{%- assign name_screw = all_products['screw-bolt-and-nut'].title | default: all_products['screw'].title -%}
+{%- assign name_screw = all_products['screw-bolt-nut'].title | default: all_products['screw'].title -%}
 {%- if name_screw == blank -%}
   {%- assign name_screw = 'products.names.screw_bolt_nut' | t -%}
 {%- endif -%}
@@ -116,7 +116,7 @@
         <div class="product-infographic-text">{{ name_locks }}</div>
       </div>
     </a>
-    <a href="{{ all_products['screw-bolt-and-nut'].url | default: all_products['screw'].url | default: '/products/screw-bolt-and-nut' }}" class="scroll-card w-inline-block" data-marquee-set="1">
+    <a href="{{ all_products['screw-bolt-nut'].url | default: all_products['screw'].url | default: '/products/screw-bolt-nut' }}" class="scroll-card w-inline-block" data-marquee-set="1">
       <div class="product-card-wrapper">
         <img src="{{ 'Screw.png' | asset_url }}" loading="eager" width="750" sizes="(max-width: 767px) 100vw, 750px" alt="{{ name_screw | escape }}" srcset="{{ 'Screw-p-500.png' | asset_url }} 500w, {{ 'Screw-p-800.png' | asset_url }} 800w, {{ 'Screw-p-1080.png' | asset_url }} 1080w, {{ 'Screw.png' | asset_url }} 1500w" class="product-infographic">
         <div class="product-infographic-text">{{ name_screw }}</div>
