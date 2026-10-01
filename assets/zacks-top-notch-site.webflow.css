@@ -872,7 +872,8 @@
   margin-left: 10px;
 }
 
-.icon-2, .icon-3 {
+.icon-2,
+.icon-3 {
   margin-top: auto;
   margin-bottom: auto;
   font-size: 35px;
@@ -2165,7 +2166,8 @@
   padding: 50px 50px 45px;
 }
 
-.rt-home-two-counter-block.rtcounter-box-one, .rt-home-two-counter-block.rt-bottom-counter-border {
+.rt-home-two-counter-block.rtcounter-box-one,
+.rt-home-two-counter-block.rt-bottom-counter-border {
   border-right-color: #00000026;
 }
 
@@ -2239,7 +2241,8 @@
   font-size: 15px;
 }
 
-.field-label, .field-label-2 {
+.field-label,
+.field-label-2 {
   color: var(--radiant-ui-components-library-marketplace--color--theme-color);
 }
 
@@ -2442,7 +2445,8 @@
   overflow: hidden;
 }
 
-.bold-text-5, .body-4 {
+.bold-text-5,
+.body-4 {
   font-family: Exo, sans-serif;
 }
 
@@ -2560,7 +2564,8 @@
   display: block;
 }
 
-.contact-us-form, .contact-us-form-copy {
+.contact-us-form,
+.contact-us-form-copy {
   z-index: 999;
   border: 5px solid var(--radiant-ui-components-library-marketplace--color--theme-color);
   background-color: var(--radiant-ui-components-library-marketplace--color--white);
@@ -3134,11 +3139,13 @@
     width: 125px;
   }
 
-  .products-section, .products-wrapper {
+  .products-section,
+  .products-wrapper {
     height: auto;
   }
 
-  .contact-us-form, .contact-us-form-copy {
+  .contact-us-form,
+  .contact-us-form-copy {
     margin-top: 0;
     padding-top: 20px;
   }
@@ -3274,7 +3281,8 @@
     padding-bottom: 10px;
   }
 
-  .bento-grid-item.is-slideshow, .bento-grid-item.is-video {
+  .bento-grid-item.is-slideshow,
+  .bento-grid-item.is-video {
     height: 45rem;
   }
 
@@ -3335,7 +3343,8 @@
     width: 95%;
   }
 
-  .right-arrow-2, .left-arrow-2 {
+  .right-arrow-2,
+  .left-arrow-2 {
     bottom: -25%;
   }
 
@@ -3771,7 +3780,8 @@
     font-size: 15px;
   }
 
-  .content-wrapper, .background-video {
+  .content-wrapper,
+  .background-video {
     width: 100vw;
   }
 
@@ -3923,7 +3933,8 @@
     width: 100%;
   }
 
-  .link, .text-block-11 {
+  .link,
+  .text-block-11 {
     font-size: 12px;
   }
 
@@ -4266,7 +4277,8 @@
     height: 120vh;
   }
 
-  .contact-us-form, .contact-us-form-copy {
+  .contact-us-form,
+  .contact-us-form-copy {
     width: 90%;
   }
 
@@ -4318,4 +4330,29 @@
   }
 }
 
+/* Centre the certification rectangle on all screen sizes */
+.procurement-request {
+  margin-left: auto;
+  margin-right: auto;
+}
 
+/* Keep the credentials link and arrow together on tablet/mobile */
+@media screen and (max-width: 991px) {
+  .procurement-request {
+    flex-wrap: wrap;
+    gap: 12px 20px;
+  }
+
+  .procurement-request>.text-block-11 {
+    flex: 1 1 240px;
+    min-width: 0;
+  }
+
+  .procurement-request>.link {
+    display: inline-block;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1.5;
+  }
+}
